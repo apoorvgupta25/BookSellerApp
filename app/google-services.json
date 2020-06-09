@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "457686713428",
+    "firebase_url": "https://bookseller-2359a.firebaseio.com",
+    "project_id": "bookseller-2359a",
+    "storage_bucket": "bookseller-2359a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457686713428:android:76aa91e253872d218199c1",
+        "android_client_info": {
+          "package_name": "com.example.bookseller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "457686713428-l5a036u35pjonbapr8o85f43qhn0iqf6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bookseller",
+            "certificate_hash": "f976906ac39ce1ef5f01cff983e2f690179717ae"
+          }
+        },
+        {
+          "client_id": "457686713428-udu8jiu43d1undl61era1rv3oeue64h3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkGs-UgxW4CN_8MuxQh64R4v3qHRi4_I0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "457686713428-udu8jiu43d1undl61era1rv3oeue64h3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">457686713428-udu8jiu43d1undl61era1rv3oeue64h3.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://bookseller-2359a.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">457686713428</string>
+    <string name="google_api_key" translatable="false">AIzaSyCkGs-UgxW4CN_8MuxQh64R4v3qHRi4_I0</string>
+    <string name="google_app_id" translatable="false">1:457686713428:android:76aa91e253872d218199c1</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCkGs-UgxW4CN_8MuxQh64R4v3qHRi4_I0</string>
+    <string name="google_storage_bucket" translatable="false">bookseller-2359a.appspot.com</string>
+    <string name="project_id" translatable="false">bookseller-2359a</string>
+</resources>
