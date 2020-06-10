@@ -6,10 +6,10 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
 class ConfigureFirebase {
-
     companion object {
 
         //static var
@@ -39,6 +39,12 @@ class ConfigureFirebase {
             return FirebaseFirestore.getInstance().collection("user").document(userId)
         }
 
-
+        //storage reference
+        fun getStorageReference(): StorageReference{
+            if (storageReference == null)
+                storageReference = FirebaseStorage.getInstance().reference
+            return storageReference as StorageReference
+        }
     }
+
 }

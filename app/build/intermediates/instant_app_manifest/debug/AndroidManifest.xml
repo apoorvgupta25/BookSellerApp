@@ -9,10 +9,9 @@
         android:minSdkVersion="26"
         android:targetSdkVersion="29" />
 
-    <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
-    <!-- <uses-sdk android:minSdkVersion="14" /> -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- permission gallery and camera -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
@@ -28,6 +27,8 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
+        <activity android:name="com.example.bookseller.activity.RegisterBookActivity" />
+        <activity android:name="com.example.bookseller.activity.MyBooksActivity" />
         <activity android:name="com.example.bookseller.activity.SignupActivity" />
         <activity android:name="com.example.bookseller.activity.HomeActivity" />
         <activity
@@ -86,6 +87,11 @@
             android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
             android:exported="true"
             android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" />
+
+        <provider
+            android:name="com.squareup.picasso.PicassoProvider"
+            android:authorities="com.example.bookseller.com.squareup.picasso"
+            android:exported="false" />
 
         <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"

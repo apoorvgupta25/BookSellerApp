@@ -38,11 +38,11 @@ class HomeActivity : AppCompatActivity() {
         saveUserInDB()
 
         booksList = ArrayList()
-        booksList.add(Book("title 1","desc 1",399, "3","Maths", 4231432))
-        booksList.add(Book("title 2","desc 2",599, "2","DMS", 214231432))
-        booksList.add(Book("title 3","desc 3",299, "8","DCN", 1321423))
-        booksList.add(Book("title 4","desc 4",799, "4","Physics", 14231432))
-        booksList.add(Book("title 5","desc 5",599, "6","Chemistry", 9731432))
+        booksList.add(Book("title 1","desc 1","399", "3","Maths", "4231432"))
+        booksList.add(Book("title 2","desc 2","599", "2","DMS", "214231432"))
+        booksList.add(Book("title 3","desc 3","299", "8","DCN", "1321423"))
+        booksList.add(Book("title 4","desc 4","799", "4","Physics", "14231432"))
+        booksList.add(Book("title 5","desc 5","599", "6","Chemistry", "9731432"))
 
         setUpRecyclerView()
     }
@@ -55,17 +55,14 @@ class HomeActivity : AppCompatActivity() {
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-
         signInClient = GoogleSignIn.getClient(this, gso)
 
         val userId = ConfigureFirebase.getUserId()
         val userEmail = ConfigureFirebase.getUserEmail()
 
-        //storing email
         val email = userEmail?.trim { it <= ' ' }
         val l = email?.indexOf("@")
         val username = l?.let { email.substring(0, it) }
-
 
         val userData = hashMapOf(
             "email" to userEmail,
@@ -73,7 +70,6 @@ class HomeActivity : AppCompatActivity() {
         )
 
         //Collection + Add -> Generate random collection Uid - useful for single book collection
-
         if (userId != null) {
             ConfigureFirebase.getUserDbRef(userId)
                 .get()
@@ -92,12 +88,12 @@ class HomeActivity : AppCompatActivity() {
         bookRecyclerView.adapter = bookAdapter
         bookAdapter.notifyDataSetChanged()
 
-        bookAdapter.setOnBookClickListener(object : BookAdapter.OnItemClickListener {
-            override fun onItemClick(position: Int) {
-                Toast.makeText(this@HomeActivity, "Clicked ${booksList.get(position).title}", Toast.LENGTH_SHORT).show()
-                TODO("Move to new Activity Remaining")
-            }
-        })
+//        bookAdapter.setOnBookClickListener(object : BookAdapter.OnItemClickListener {
+//            override fun onItemClick(position: Int) {
+//                Toast.makeText(this@HomeActivity, "Clicked ${booksList.get(position).title}", Toast.LENGTH_SHORT).show()
+//                TODO("Move to new Activity Remaining")
+//            }
+//        })
     }
 
     //Menu
@@ -114,6 +110,10 @@ class HomeActivity : AppCompatActivity() {
                 signInClient.signOut()
                 finish()
                 startActivity(Intent(this,MainActivity::class.java))
+                true
+            }
+            R.id.myBooks -> {
+                startActivity(Intent(this@HomeActivity, MyBooksActivity::class.java ))
                 true
             }
             else -> super.onOptionsItemSelected(item)

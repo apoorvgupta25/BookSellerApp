@@ -1,4 +1,28 @@
 <resources>
     <string name="app_name">BookSeller</string>
-    <string name="webclient_id">457686713428-l5a036u35pjonbapr8o85f43qhn0iqf6.apps.googleusercontent.com</string>
+<!--    <string name="webclient_id">457686713428-l5a036u35pjonbapr8o85f43qhn0iqf6.apps.googleusercontent.com</string>-->
+
+    <string name="rs">\u20A8</string>
+    <string name="Rs">\u20B9</string>
+    <string-array name="semester">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+
+    <string-array name="subject">
+        <item>Maths</item>
+        <item>DMS</item>
+        <item>DCN</item>
+        <item>Data Structure</item>
+        <item>Java</item>
+        <item>Python</item>
+        <item>Algorithms</item>
+        <item>Others</item>
+    </string-array>
 </resources>

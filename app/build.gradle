@@ -50,4 +50,18 @@ dependencies {
     //Google SignIn
     implementation 'com.google.android.gms:play-services-auth:18.0.0'
 
+    //dialog
+    implementation 'com.github.d-max:spots-dialog:1.1@aar'
+
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //carousel view
+    implementation 'com.synnapps:carouselview:0.1.5'
+
+    //masktext
+    implementation 'com.github.santalu:mask-edittext:1.1.1'
+
+    //currency
+    implementation 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'
 }
