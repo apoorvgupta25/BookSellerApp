@@ -58,7 +58,8 @@ class HomeActivity : AppCompatActivity() {
 
 
 
-        db.addSnapshotListener(this) { querySnapshot, e ->
+        // Sub-Collection Query
+        /*db.addSnapshotListener(this) { querySnapshot, e ->
             if (e != null) return@addSnapshotListener
             booksList.clear()
             for (documentSnapshot in querySnapshot!!) {
@@ -77,6 +78,22 @@ class HomeActivity : AppCompatActivity() {
             bookAdapter.notifyDataSetChanged()
             dialogHomeActivity!!.dismiss()
         }
+         */
+
+        //Top-Level Collection Query
+        ConfigureFirebase.getBookDbRef()
+            .addSnapshotListener(this){querySnapshot,e->
+                if(e != null){
+                    return@addSnapshotListener;
+                }
+                booksList.clear()
+                for (documentSnapshot in querySnapshot!!){
+                    booksList.add(documentSnapshot.toObject(Book::class.java))
+                }
+                bookAdapter.notifyDataSetChanged()
+                dialogHomeActivity!!.dismiss()
+            }
+
 
 
     }

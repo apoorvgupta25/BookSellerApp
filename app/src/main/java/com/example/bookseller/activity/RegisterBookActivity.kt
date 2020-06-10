@@ -86,8 +86,9 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
         val price = priceEditText.text.toString()
         val semester = semesterSpinner.selectedItem.toString()
         val subject = subjectSpinner.selectedItem.toString()
+        val userId = ConfigureFirebase.getUserId()
 
-        return Book(title = title, description = description, phone = phone, semester = semester, subject = subject, price = price)
+        return Book(title = title, description = description, phone = phone, semester = semester, subject = subject, price = price, userId = userId)
     }
 
     //2.3.Save Book
@@ -126,7 +127,7 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
 
                 if(listSize == photoUrlList.size){
                     book!!.setPhoto(photoUrlList)
-                    ConfigureFirebase.getUserDbRef(userId).collection("books").add(book!!).addOnCompleteListener{
+                    ConfigureFirebase.getBookDbRef().add(book!!).addOnCompleteListener{
                         dialog!!.dismiss()
                         finish()
                     }

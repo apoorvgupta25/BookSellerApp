@@ -46,7 +46,8 @@ class MyBooksActivity : AppCompatActivity() {
             .build()
         dialog!!.show()
 
-        ConfigureFirebase.getUserDbRef(ConfigureFirebase.getUserId()!!).collection("books")
+//        ConfigureFirebase.getUserDbRef(ConfigureFirebase.getUserId()!!).collection("books")       //Sub-collection Query
+        ConfigureFirebase.getBookDbRef().whereEqualTo("userId",ConfigureFirebase.getUserId())
             .addSnapshotListener(this){querySnapshot,e->
                 if(e != null){
                     return@addSnapshotListener;

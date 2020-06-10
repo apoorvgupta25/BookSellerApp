@@ -8,13 +8,14 @@ data class Book(
     val price: String?,
     val semester: String?,
     val subject: String?,
-    val phone: String?
+    val phone: String?,
+    val userId: String?
     ) : Serializable {
 
     private var photo: List<String>? = null
 
     // empty no-args constructor for firebase
-    constructor() : this("","","","","","")
+    constructor() : this("","","","","","","")
 
     fun setPhoto(photo: List<String>?) {
         this.photo = photo

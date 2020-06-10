@@ -39,6 +39,11 @@ class ConfigureFirebase {
             return FirebaseFirestore.getInstance().collection("user").document(userId)
         }
 
+        //Books db reference
+        fun getBookDbRef(): CollectionReference{
+            return FirebaseFirestore.getInstance().collection("books")
+        }
+
         //storage reference
         fun getStorageReference(): StorageReference{
             if (storageReference == null)
