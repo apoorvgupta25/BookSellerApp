@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             val intent = signInClient.signInIntent
             startActivityForResult(intent, REQUEST_CODE_SIGN_IN)
 
-            // In One Line
+            // In One Line todo: Example of also
 //            signInClient.signInIntent.also {
 //                startActivityForResult(it, REQUEST_CODE_SIGN_IN)
 //            }

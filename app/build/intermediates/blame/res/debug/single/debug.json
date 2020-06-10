@@ -32,6 +32,10 @@
         "source": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\src\\main\\res\\layout\\activity_signup.xml"
     },
     {
+        "merged": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\build\\intermediates\\res\\merged\\debug\\layout_book_item.xml.flat",
+        "source": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\src\\main\\res\\layout\\book_item.xml"
+    },
+    {
         "merged": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
         "source": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },

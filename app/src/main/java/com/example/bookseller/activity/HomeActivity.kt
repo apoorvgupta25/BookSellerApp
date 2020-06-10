@@ -5,9 +5,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookseller.R
+import com.example.bookseller.adapter.BookAdapter
 import com.example.bookseller.helper.ConfigureFirebase
+import com.example.bookseller.model.Book
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -20,9 +24,13 @@ import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
 
+    //recycler
+    private lateinit var booksList: ArrayList<Book>
+    private lateinit var bookAdapter: BookAdapter
+
+    //firebase
     private lateinit var mAuth: FirebaseAuth
     private lateinit var signInClient: GoogleSignInClient
-
     private val db=  FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,16 +67,33 @@ class HomeActivity : AppCompatActivity() {
                 .get()
                 .addOnSuccessListener {documentSnapshot ->
                     if (!documentSnapshot.exists()) {
-                        ConfigureFirebase.getUserDbRef(userId)
-                            .set(userData)
-                            .addOnSuccessListener {
-                            }
+                        ConfigureFirebase.getUserDbRef(userId).set(userData)
                     }
                 }
         }
+
+        booksList = ArrayList()
+        booksList.add(Book("title 1","desc 1",399, "3","Maths", 4231432))
+        booksList.add(Book("title 2","desc 2",599, "2","DMS", 214231432))
+        booksList.add(Book("title 3","desc 3",299, "8","DCN", 1321423))
+        booksList.add(Book("title 4","desc 4",799, "4","Physics", 14231432))
+        booksList.add(Book("title 5","desc 5",599, "6","Chemistry", 9731432))
+        
+        bookAdapter = BookAdapter(booksList)
+        bookRecyclerView.layoutManager = LinearLayoutManager(this)
+        bookRecyclerView.adapter = bookAdapter
+        bookAdapter.notifyDataSetChanged()
+
+        bookAdapter.setOnBookClickListener(object : BookAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                Toast.makeText(this@HomeActivity, "Clicked ${booksList.get(position).title}", Toast.LENGTH_SHORT).show()
+                TODO("Move to new Activity Remaining")
+            }
+        })
     }
 
 
+    //Menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.main_menu, menu)
