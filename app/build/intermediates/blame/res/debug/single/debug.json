@@ -12,6 +12,10 @@
         "source": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
+        "merged": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\build\\intermediates\\res\\merged\\debug\\menu_main_menu.xml.flat",
+        "source": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\src\\main\\res\\menu\\main_menu.xml"
+    },
+    {
         "merged": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
@@ -46,6 +50,10 @@
     {
         "merged": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\build\\intermediates\\res\\merged\\debug\\layout_nav_drawer.xml.flat",
+        "source": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\src\\main\\res\\layout\\nav_drawer.xml"
     },
     {
         "merged": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
