@@ -18,6 +18,7 @@ class MyBooksActivity : AppCompatActivity() {
     //recycler
     private var myBooksList: ArrayList<Book> = ArrayList()
     private lateinit var myBooksAdapter: BookAdapter
+
     private var dialog: AlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

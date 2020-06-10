@@ -1,7 +1,9 @@
 package com.example.bookseller.activity
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -17,19 +19,23 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
 
     //recycler
-    private lateinit var booksList: ArrayList<Book>
+    private var booksList: ArrayList<Book> = ArrayList()
     private lateinit var bookAdapter: BookAdapter
 
     //firebase
     private lateinit var mAuth: FirebaseAuth
     private lateinit var signInClient: GoogleSignInClient
-    private val db=  FirebaseFirestore.getInstance()
+    private val db = FirebaseFirestore.getInstance().collection("user")
+
+    private var dialogHomeActivity: AlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,18 +43,46 @@ class HomeActivity : AppCompatActivity() {
 
         saveUserInDB()
 
-        booksList = ArrayList()
-        booksList.add(Book("title 1","desc 1","399", "3","Maths", "4231432"))
-        booksList.add(Book("title 2","desc 2","599", "2","DMS", "214231432"))
-        booksList.add(Book("title 3","desc 3","299", "8","DCN", "1321423"))
-        booksList.add(Book("title 4","desc 4","799", "4","Physics", "14231432"))
-        booksList.add(Book("title 5","desc 5","599", "6","Chemistry", "9731432"))
 
         setUpRecyclerView()
     }
 
+    override fun onStart() {
+        super.onStart()
+        dialogHomeActivity = SpotsDialog.Builder()
+            .setContext(this)
+            .setMessage("Getting Books")
+            .setCancelable(false)
+            .build()
+        dialogHomeActivity!!.show()
+
+
+
+        db.addSnapshotListener(this) { querySnapshot, e ->
+            if (e != null) return@addSnapshotListener
+            booksList.clear()
+            for (documentSnapshot in querySnapshot!!) {
+                db.document(documentSnapshot.id)
+                    .collection("books")
+                    .addSnapshotListener(this) { querySnapshotBook, eBook ->
+                        if (eBook != null) return@addSnapshotListener
+
+//                        booksList.clear()
+                        for (documentSnapshotBook in querySnapshotBook!!) {
+                            booksList.add(documentSnapshotBook.toObject(Book::class.java))
+                        }
+                        bookAdapter.notifyDataSetChanged()
+                    }
+            }
+            bookAdapter.notifyDataSetChanged()
+            dialogHomeActivity!!.dismiss()
+        }
+
+
+    }
+
     // Save new User
-    private fun saveUserInDB(){
+    private fun saveUserInDB() {
         mAuth = Firebase.auth
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -73,7 +107,7 @@ class HomeActivity : AppCompatActivity() {
         if (userId != null) {
             ConfigureFirebase.getUserDbRef(userId)
                 .get()
-                .addOnSuccessListener {documentSnapshot ->
+                .addOnSuccessListener { documentSnapshot ->
                     if (!documentSnapshot.exists()) {
                         ConfigureFirebase.getUserDbRef(userId).set(userData)
                     }
@@ -82,7 +116,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
 
-    private fun setUpRecyclerView(){
+    private fun setUpRecyclerView() {
         bookAdapter = BookAdapter(booksList)
         bookRecyclerView.layoutManager = LinearLayoutManager(this)
         bookRecyclerView.adapter = bookAdapter
@@ -109,11 +143,11 @@ class HomeActivity : AppCompatActivity() {
                 mAuth.signOut()
                 signInClient.signOut()
                 finish()
-                startActivity(Intent(this,MainActivity::class.java))
+                startActivity(Intent(this, MainActivity::class.java))
                 true
             }
             R.id.myBooks -> {
-                startActivity(Intent(this@HomeActivity, MyBooksActivity::class.java ))
+                startActivity(Intent(this@HomeActivity, MyBooksActivity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item)

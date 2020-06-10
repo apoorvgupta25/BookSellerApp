@@ -65,7 +65,6 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
                             if (book!!.description!!.isNotEmpty()) {
                                 if (book!!.title!!.isNotEmpty()) {
                                     saveBook()
-                                    Toast.makeText(this, "Successfully", Toast.LENGTH_SHORT).show()
                                 }else showToastMsg("Fill Title")
                             }else showToastMsg("Fill Description")
                         }else showToastMsg("Fill Phone number field")
@@ -127,10 +126,7 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
                         dialog!!.dismiss()
                         finish()
                     }
-
-
                 }
-
             }
         }
     }
