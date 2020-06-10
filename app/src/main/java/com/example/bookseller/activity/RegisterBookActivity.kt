@@ -19,6 +19,8 @@ import com.example.bookseller.model.Book
 import com.google.firebase.storage.StorageReference
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_register_book.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -31,6 +33,8 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
 
     private var book: Book? = null
     private var dialog: AlertDialog? = null
+
+    private val imageName =  UUID.randomUUID().toString()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -111,7 +115,7 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
             .child("images")
             .child("books")
             .child(userId)
-            .child("image $i")
+            .child(imageName)
 
         val uploadTask = imageBook.putFile(Uri.parse(imageUrl))
         uploadTask.addOnSuccessListener { taskSnapshot ->
