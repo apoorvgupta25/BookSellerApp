@@ -13,6 +13,9 @@ data class Book(
 
     private var photo: List<String>? = null
 
+    // empty no-args constructor for firebase
+    constructor() : this("","","","","","")
+
     fun setPhoto(photo: List<String>?) {
         this.photo = photo
     }

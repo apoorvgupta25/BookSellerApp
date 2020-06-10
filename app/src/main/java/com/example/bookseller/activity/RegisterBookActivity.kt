@@ -97,7 +97,6 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
 
         dialog!!.show()
 
-        Log.i("SUCCESS",photoList.size.toString())
         for (i in photoList.indices) {
             val imageUrl = photoList[i]
             val listSize = photoList.size
@@ -119,7 +118,7 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
         uploadTask.addOnSuccessListener { taskSnapshot ->
             taskSnapshot.metadata?.reference?.downloadUrl?.addOnCompleteListener{task ->
                 val convertUrl = task.result.toString()
-                Log.i("SUCCESS",convertUrl)
+
                 photoUrlList.add(convertUrl)
 
                 if(listSize == photoUrlList.size){
