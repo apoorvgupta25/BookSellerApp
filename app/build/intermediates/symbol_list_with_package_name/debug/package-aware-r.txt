@@ -1679,6 +1679,7 @@ id left
 id light
 id line1
 id line3
+id linearLayout
 id listMode
 id list_item
 id loginButton
@@ -1772,6 +1773,7 @@ id search_src_text
 id search_voice_btn
 id select_dialog_listview
 id selected
+id semesterButton
 id semesterSpinner
 id shortcut
 id showCustom
@@ -1787,6 +1789,7 @@ id snackbar_text
 id snap
 id snapMargins
 id spacer
+id spinnerFilter
 id spinnerLinearLayout
 id split_action_bar
 id spread
@@ -1797,6 +1800,7 @@ id src_over
 id standard
 id start
 id stretch
+id subjectButton
 id subjectSpinner
 id submenuarrow
 id submit_area
@@ -1937,6 +1941,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_spinner
 layout dmax_spots_dialog
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions

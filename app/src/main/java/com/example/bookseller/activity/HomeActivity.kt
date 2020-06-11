@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +22,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_home.*
@@ -37,6 +39,8 @@ class HomeActivity : AppCompatActivity() {
 
     private var dialogHomeActivity: AlertDialog? = null
 
+    var selectedSemester: String = "Semester"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -49,13 +53,85 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        getAllBooks()
+    }
+
+    //filter semester wise
+    fun filterSemesterwise(view: View){
+        val dialogSemester = AlertDialog.Builder(this)
+        dialogSemester.setTitle("Select Semester")
+
+        //spinner
+        val spinnerView = layoutInflater.inflate(R.layout.dialog_spinner, null)
+
+        val semesterHomeSpinner = spinnerView.findViewById<Spinner>(R.id.spinnerFilter)
+        val semester = resources.getStringArray(R.array.semester)
+        val semesterAdapter: ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_item, semester)
+
+        semesterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        semesterHomeSpinner.adapter = semesterAdapter
+
+        dialogSemester.setView(spinnerView)
+
+        dialogSemester
+            .setPositiveButton("OK"){_, _ ->
+                selectedSemester = semesterHomeSpinner.selectedItem.toString()
+                geBooksBySemester(selectedSemester)
+            }
+            .setNegativeButton("Cancel"){_,_ -> }
+
+        dialogHomeActivity = dialogSemester.create()
+        dialogHomeActivity!!.show()
+    }
+
+    // filter semester wise
+    fun filterSubjectwise(view: View){
+        if(selectedSemester != "Semester"){
+            val dialogSubject = AlertDialog.Builder(this)
+            dialogSubject.setTitle("Select Subject")
+
+            //spinner
+            val spinnerView = layoutInflater.inflate(R.layout.dialog_spinner, null)
+
+            val subjectHomeSpinner = spinnerView.findViewById<Spinner>(R.id.spinnerFilter)
+            var subject: Array<String> = resources.getStringArray(R.array.sub_sem_1)
+            when(selectedSemester){
+                "1" -> subject = resources.getStringArray(R.array.sub_sem_1)
+                "2" -> subject = resources.getStringArray(R.array.sub_sem_2)
+                "3" -> subject = resources.getStringArray(R.array.sub_sem_3)
+                "4" -> subject = resources.getStringArray(R.array.sub_sem_4)
+                "5" -> subject = resources.getStringArray(R.array.sub_sem_5)
+                "6" -> subject = resources.getStringArray(R.array.sub_sem_6)
+                "7" -> subject = resources.getStringArray(R.array.sub_sem_7)
+                "8" -> subject = resources.getStringArray(R.array.sub_sem_8)
+            }
+            val subjectAdapter: ArrayAdapter<String> = ArrayAdapter(this@HomeActivity, android.R.layout.simple_spinner_item, subject)
+
+            subjectAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            subjectHomeSpinner.adapter = subjectAdapter
+
+            dialogSubject.setView(spinnerView)
+
+            dialogSubject
+                .setPositiveButton("OK"){_, _ ->
+                    val selectedSubject = subjectHomeSpinner.selectedItem.toString()
+                    getBooksBySubject(selectedSubject, selectedSemester)
+                }
+                .setNegativeButton("Cancel"){_,_ -> }
+
+            dialogHomeActivity = dialogSubject.create()
+            dialogHomeActivity!!.show()
+        }
+        else Toast.makeText(this@HomeActivity, "Select Semester First", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun getAllBooks(){
         dialogHomeActivity = SpotsDialog.Builder()
             .setContext(this)
             .setMessage("Getting Books")
             .setCancelable(false)
             .build()
         dialogHomeActivity!!.show()
-
 
 
         // Sub-Collection Query
@@ -93,10 +169,58 @@ class HomeActivity : AppCompatActivity() {
                 bookAdapter.notifyDataSetChanged()
                 dialogHomeActivity!!.dismiss()
             }
-
-
-
     }
+
+    private fun geBooksBySemester(selectedSemester: String){
+        dialogHomeActivity = SpotsDialog.Builder()
+            .setContext(this)
+            .setMessage("Getting Books By Semster")
+            .setCancelable(false)
+            .build()
+        dialogHomeActivity!!.show()
+
+        ConfigureFirebase.getBookDbRef()
+            .whereEqualTo("semester",selectedSemester)
+            .addSnapshotListener(this){querySnapshot,e->
+                if(e != null){
+                    return@addSnapshotListener;
+                }
+                booksList.clear()
+                for (documentSnapshot in querySnapshot!!){
+                    booksList.add(documentSnapshot.toObject(Book::class.java))
+                }
+                bookAdapter.notifyDataSetChanged()
+                dialogHomeActivity!!.dismiss()
+            }
+    }
+
+    private fun getBooksBySubject(selectedSubject: String, selectedSemester: String){
+        dialogHomeActivity = SpotsDialog.Builder()
+            .setContext(this)
+            .setMessage("Getting Books By Subject")
+            .setCancelable(false)
+            .build()
+        dialogHomeActivity!!.show()
+
+        ConfigureFirebase.getBookDbRef()
+            .whereEqualTo("subject",selectedSubject)
+            .addSnapshotListener(this){querySnapshot,e->
+                if(e != null){
+                    Log.i("query error 2",e.toString())
+                    return@addSnapshotListener;
+                }
+                booksList.clear()
+                for (documentSnapshot in querySnapshot!!){
+                    val book = documentSnapshot.toObject(Book::class.java)
+                    Log.i("query",book.toString())
+                    booksList.add(documentSnapshot.toObject(Book::class.java))
+                }
+                bookAdapter.notifyDataSetChanged()
+                dialogHomeActivity!!.dismiss()
+            }
+    }
+
+
 
     // Save new User
     private fun saveUserInDB() {
@@ -132,7 +256,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-
+    // set up recycler view
     private fun setUpRecyclerView() {
         bookAdapter = BookAdapter(booksList)
         bookRecyclerView.layoutManager = LinearLayoutManager(this)

@@ -63,8 +63,8 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
         val price = priceEditText.rawValue.toString()
 
         if (photoList.size != 0) {
-            if (book!!.semester!!.isNotEmpty() && book!!.semester != "Select") {
-                if (book!!.subject!!.isNotEmpty() && book!!.subject != "Select") {
+            if (book!!.semester!!.isNotEmpty() && book!!.semester != "Semester") {
+                if (book!!.subject!!.isNotEmpty() && book!!.subject != "Subject") {
                     if (book!!.price!!.isNotEmpty() && price != "0") {
                         if (book!!.phone!!.isNotEmpty()) {
                             if (book!!.description!!.isNotEmpty()) {
@@ -74,8 +74,8 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
                             } else showToastMsg("Fill Description")
                         } else showToastMsg("Fill Phone number field")
                     } else showToastMsg("Enter valid Price")
-                } else showToastMsg("Enter subject")
-            } else showToastMsg("Enter Semester")
+                } else showToastMsg("Select subject")
+            } else showToastMsg("Select Semester")
         } else showToastMsg("Select at least one photo")
     }
 
@@ -221,14 +221,13 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
 
         // semester
         val semester = resources.getStringArray(R.array.semester)
-        val semesterAdapter: ArrayAdapter<String> =
-            ArrayAdapter(this, android.R.layout.simple_spinner_item, semester)
+        val semesterAdapter: ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_item, semester)
 
         semesterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         semesterSpinner.adapter = semesterAdapter
 
         // subject- update subject based semester
-        var subject: Array<String>? = resources.getStringArray(R.array.sub_sem_1)
+        var subject = resources.getStringArray(R.array.sub_sem_1)
 
         semesterSpinner.onItemSelectedListener = object : OnItemSelectedListener {
 
@@ -243,7 +242,7 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
                     7 -> subject = resources.getStringArray(R.array.sub_sem_7)
                     8 -> subject = resources.getStringArray(R.array.sub_sem_8)
                 }
-                val subjectAdapter: ArrayAdapter<String> = ArrayAdapter(this@RegisterBookActivity, android.R.layout.simple_spinner_item, subject!!)
+                val subjectAdapter: ArrayAdapter<String> = ArrayAdapter(this@RegisterBookActivity, android.R.layout.simple_spinner_item, subject)
                 subjectAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 subjectSpinner.adapter = subjectAdapter
             }

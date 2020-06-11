@@ -5,7 +5,7 @@
     <string name="rs">\u20A8</string>
     <string name="Rs">\u20B9</string>
     <string-array name="semester">
-        <item>Select</item>
+        <item>Semester</item><!--0th position in array-->
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -17,7 +17,7 @@
     </string-array>
 
     <string-array name="sub_sem_1">
-        <item>Select</item>
+        <item>Subject</item>
         <item>Maths-1</item>
         <item>Chemistry</item>
         <item>EEEE</item>
@@ -26,7 +26,7 @@
     </string-array>
 
     <string-array name="sub_sem_2">
-        <item>Select</item>
+        <item>Subject</item>
         <item>Maths-2</item>
         <item>Physics</item>
         <item>EM</item>
@@ -36,7 +36,7 @@
 
 
     <string-array name="sub_sem_3">
-        <item>Select</item>
+        <item>Subject</item>
         <item>Maths-3</item>
         <item>DMS</item>
         <item>DCN</item>
@@ -45,7 +45,7 @@
     </string-array>
 
     <string-array name="sub_sem_4">
-        <item>Select</item>
+        <item>Subject</item>
         <item>Maths-4</item>
         <item>ITC</item>
         <item>AA</item>
@@ -55,7 +55,7 @@
 
 
     <string-array name="sub_sem_5">
-        <item>Select</item>
+        <item>Subject</item>
         <item>Maths-5</item>
         <item>DS</item>
         <item>Cloud Computing</item>
@@ -65,7 +65,7 @@
 
 
     <string-array name="sub_sem_6">
-        <item>Select</item>
+        <item>Subject</item>
         <item>Maths-6</item>
         <item>Java</item>
         <item>Algorithms</item>
@@ -73,7 +73,7 @@
     </string-array>
 
     <string-array name="sub_sem_7">
-        <item>Select</item>
+        <item>Subject</item>
         <item>Maths-7</item>
         <item>ML</item>
         <item>NLP</item>
@@ -81,7 +81,7 @@
     </string-array>
 
     <string-array name="sub_sem_8">
-        <item>Select</item>
+        <item>Subject</item>
         <item>Maths-8</item>
         <item>CS</item>
         <item>Adv Java</item>
