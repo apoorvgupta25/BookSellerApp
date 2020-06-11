@@ -60,6 +60,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         saveUserInDB()
 
+        addBookFAB.setOnClickListener {
+            startActivity(Intent(this, RegisterBookActivity::class.java))
+        }
 
         setUpRecyclerView()
     }
@@ -296,6 +299,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.myBooksActivity2 ->{
                 startActivity(Intent(this, MyBooksActivity::class.java))
+                drawerLayoutHome.closeDrawers()
                 true
             }
             R.id.logout -> {
@@ -304,6 +308,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.profile -> {
                 startActivity(Intent(this, ProfileActivity::class.java))
+                drawerLayoutHome.closeDrawers()
                 true
             }
             else -> false

@@ -62,9 +62,7 @@ class MyBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         navigationViewMy.setNavigationItemSelectedListener(this);
 
 
-        addBookFAB.setOnClickListener {
-            startActivity(Intent(this, RegisterBookActivity::class.java))
-        }
+
 
         setUpRecyclerView()
 
