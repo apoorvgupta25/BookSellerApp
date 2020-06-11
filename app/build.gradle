@@ -65,5 +65,4 @@ dependencies {
 
     //currency
     implementation 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'
-    compileOnly 'com.google.android.wearable:wearable:2.5.0'
 }
