@@ -87,6 +87,23 @@
                         "endColumns": "100",
                         "endOffsets": "5934"
                     }
+                },
+                {
+                    "source": "C:\\Users\\AG\\.gradle\\caches\\transforms-2\\files-2.1\\8c3907e0a2c11c964553cbbee1d2836c\\wear-1.0.0\\res\\values-tr\\values-tr.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,166",
+                        "endColumns": "110,116",
+                        "endOffsets": "161,278"
+                    },
+                    "to": {
+                        "startLines": "51,52",
+                        "startColumns": "4,4",
+                        "startOffsets": "5939,6050",
+                        "endColumns": "110,116",
+                        "endOffsets": "6045,6162"
+                    }
                 }
             ]
         }

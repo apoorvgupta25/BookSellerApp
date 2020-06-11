@@ -41,8 +41,8 @@ class BookAdapter(private val booksList: ArrayList<Book>) : RecyclerView.Adapter
 //        TODO("Remaining")
         val currentBook: Book = booksList[position]
 
-        holder.itemView.titleTextView.text = currentBook.title
-        holder.itemView.priceTextView.text = currentBook.price.toString()
+        holder.itemView.bookTitleTextView.text = currentBook.title
+        holder.itemView.bookPriceTextView.text = currentBook.price.toString()
 
 
 //        val imageView: ImageView = itemV

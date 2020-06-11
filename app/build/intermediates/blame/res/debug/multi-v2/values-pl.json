@@ -55,6 +55,23 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\AG\\.gradle\\caches\\transforms-2\\files-2.1\\8c3907e0a2c11c964553cbbee1d2836c\\wear-1.0.0\\res\\values-pl\\values-pl.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,164",
+                        "endColumns": "108,114",
+                        "endOffsets": "159,274"
+                    },
+                    "to": {
+                        "startLines": "51,52",
+                        "startColumns": "4,4",
+                        "startOffsets": "5966,6075",
+                        "endColumns": "108,114",
+                        "endOffsets": "6070,6185"
+                    }
+                },
+                {
                     "source": "C:\\Users\\AG\\.gradle\\caches\\transforms-2\\files-2.1\\31222fae4632e3edab2fd9f6a9a6307c\\jetified-play-services-basement-17.1.1\\res\\values-pl\\values.xml",
                     "from": {
                         "startLines": "4",

@@ -21,6 +21,23 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\AG\\.gradle\\caches\\transforms-2\\files-2.1\\8c3907e0a2c11c964553cbbee1d2836c\\wear-1.0.0\\res\\values-sk\\values-sk.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,171",
+                        "endColumns": "115,123",
+                        "endOffsets": "166,290"
+                    },
+                    "to": {
+                        "startLines": "51,52",
+                        "startColumns": "4,4",
+                        "startOffsets": "5987,6103",
+                        "endColumns": "115,123",
+                        "endOffsets": "6098,6222"
+                    }
+                },
+                {
                     "source": "C:\\Users\\AG\\.gradle\\caches\\transforms-2\\files-2.1\\41bf30c998aa584fc1b68c5d9b4cae13\\navigation-ui-2.2.2\\res\\values-sk\\values-sk.xml",
                     "from": {
                         "startLines": "2,3",

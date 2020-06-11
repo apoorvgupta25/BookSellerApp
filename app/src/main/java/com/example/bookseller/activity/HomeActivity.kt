@@ -282,12 +282,14 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         bookRecyclerView.adapter = bookAdapter
         bookAdapter.notifyDataSetChanged()
 
-//        bookAdapter.setOnBookClickListener(object : BookAdapter.OnItemClickListener {
-//            override fun onItemClick(position: Int) {
-//                Toast.makeText(this@HomeActivity, "Clicked ${booksList.get(position).title}", Toast.LENGTH_SHORT).show()
-//                TODO("Move to new Activity Remaining")
-//            }
-//        })
+        bookAdapter.setOnBookClickListener(object : BookAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val selectedBook = booksList[position]
+                val intent = Intent(this@HomeActivity, ViewBookActivity::class.java)
+                intent.putExtra("selectedBook",selectedBook)
+                startActivity(intent)
+            }
+        })
     }
 
     // Navigation Drawer

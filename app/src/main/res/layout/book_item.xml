@@ -30,7 +30,7 @@
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <TextView
-            android:id="@+id/titleTextView"
+            android:id="@+id/bookTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Book1"
@@ -43,16 +43,16 @@
             app:layout_constraintVertical_bias="0.089" />
 
         <TextView
-            android:id="@+id/priceTextView"
+            android:id="@+id/bookPriceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="200"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/titleTextView"
+            app:layout_constraintEnd_toEndOf="@+id/bookTitleTextView"
             app:layout_constraintHorizontal_bias="0.631"
-            app:layout_constraintStart_toStartOf="@+id/titleTextView"
-            app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+            app:layout_constraintStart_toStartOf="@+id/bookTitleTextView"
+            app:layout_constraintTop_toBottomOf="@+id/bookTitleTextView"
             app:layout_constraintVertical_bias="0.016" />
 
 
