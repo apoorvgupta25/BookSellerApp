@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ArrayAdapter
@@ -27,8 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.activity_home.toolbar
-import kotlinx.android.synthetic.main.activity_my_books.*
+import kotlinx.android.synthetic.main.activity_home.toolbarHome
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -51,14 +49,14 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_home)
 
         //toolbar
-        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbarHome)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true);
 
         //navigation drawer
-        val toggle = ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
-        drawerLayout.addDrawerListener(toggle);
+        val toggle = ActionBarDrawerToggle(this,drawerLayoutHome,R.string.open,R.string.close);
+        drawerLayoutHome.addDrawerListener(toggle);
         toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationViewHome.setNavigationItemSelectedListener(this);
 
         saveUserInDB()
 
@@ -289,43 +287,34 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //        })
     }
 
-    //Menu
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.main_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.logout -> {
-                mAuth.signOut()
-                signInClient.signOut()
-                finish()
-                startActivity(Intent(this, MainActivity::class.java))
-                true
-            }
-            R.id.myBooks -> {
-                startActivity(Intent(this@HomeActivity, MyBooksActivity::class.java))
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
     // Navigation Drawer
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         return when (item.itemId){
             R.id.homeActivity2 -> {
-                drawerLayout.closeDrawers();
+                drawerLayoutHome.closeDrawers()
                 true
             }
             R.id.myBooksActivity2 ->{
                 startActivity(Intent(this, MyBooksActivity::class.java))
                 true
             }
+            R.id.logout -> {
+                logout()
+                true
+            }
+            R.id.profile -> {
+                startActivity(Intent(this, ProfileActivity::class.java))
+                true
+            }
             else -> false
         }
+    }
+
+    private fun logout(){
+        mAuth.signOut()
+        signInClient.signOut()
+        finish()
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
     // saves state

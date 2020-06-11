@@ -1468,6 +1468,7 @@ drawable design_snackbar_background
 drawable dmax_spots_spot
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable ic_account
 drawable ic_add
 drawable ic_book
 drawable ic_calendar_black_24dp
@@ -1478,6 +1479,7 @@ drawable ic_keyboard_arrow_left_black_24dp
 drawable ic_keyboard_arrow_right_black_24dp
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable ic_logout
 drawable ic_menu_arrow_down_black_24dp
 drawable ic_menu_arrow_up_black_24dp
 drawable ic_mtrl_checked_circle
@@ -1631,8 +1633,9 @@ id direct
 id disableHome
 id dmax_spots_progress
 id dmax_spots_title
-id drawerLayout
+id drawerLayoutHome
 id drawerLayoutMy
+id drawerLayoutProfile
 id dropdown_menu
 id edit_query
 id emailEditText
@@ -1722,13 +1725,13 @@ id mtrl_picker_text_input_range_end
 id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id multiply
-id myBooks
 id myBooksActivity2
 id myBooksRecyclerView
 id nav_controller_view_tag
 id nav_host_fragment_container
-id navigationView
+id navigationViewHome
 id navigationViewMy
+id navigationViewProfile
 id navigation_header_container
 id never
 id noScroll
@@ -1755,6 +1758,7 @@ id pin
 id postButton
 id priceEditText
 id priceTextView
+id profile
 id progress_circular
 id progress_horizontal
 id radio
@@ -1845,7 +1849,9 @@ id titleDividerNoCustom
 id titleEditText
 id titleTextView
 id title_template
-id toolbar
+id toolbarHome
+id toolbarMy
+id toolbarProfile
 id top
 id topPanel
 id touch_outside
@@ -1934,6 +1940,7 @@ layout abc_tooltip
 layout activity_home
 layout activity_main
 layout activity_my_books
+layout activity_profile
 layout activity_register_book
 layout activity_signup
 layout book_item
@@ -2008,7 +2015,6 @@ layout text_view_with_theme_line_height
 layout text_view_without_line_height
 layout view_carousel
 menu drawer_menu
-menu main_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
