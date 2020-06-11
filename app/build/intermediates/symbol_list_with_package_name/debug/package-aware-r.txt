@@ -57,7 +57,14 @@ animator mtrl_fab_show_motion_spec
 animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
 array semester
-array subject
+array sub_sem_1
+array sub_sem_2
+array sub_sem_3
+array sub_sem_4
+array sub_sem_5
+array sub_sem_6
+array sub_sem_7
+array sub_sem_8
 attr DialogSpotColor
 attr DialogSpotCount
 attr DialogTitleAppearance

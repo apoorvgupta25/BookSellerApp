@@ -7,8 +7,9 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_register_book.*
 import java.util.*
 import kotlin.collections.ArrayList
 
+
 class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
 
     private val permission = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -34,7 +36,7 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
     private var book: Book? = null
     private var dialog: AlertDialog? = null
 
-    private val imageName =  UUID.randomUUID().toString()
+    private val imageName = UUID.randomUUID().toString()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,43 +45,42 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
 //        photoList =
 //        photoUrlList = ArrayList()
 
-        Permissions.validatePermssion(permission, this ,1)
+        Permissions.validatePermssion(permission, this, 1)
 
         loadSpinnerData()
 
         storageReference = ConfigureFirebase.getStorageReference()
 
 
-
     }
 
 
     //2.1.On Post
-    fun validateData(v: View){
+    fun validateData(v: View) {
         book = createBook()
 
         //validate phone number
         val price = priceEditText.rawValue.toString()
 
-        if(photoList.size != 0){
-            if(book!!.semester!!.isNotEmpty()){
-                if(book!!.subject!!.isNotEmpty()) {
+        if (photoList.size != 0) {
+            if (book!!.semester!!.isNotEmpty() && book!!.semester != "Select") {
+                if (book!!.subject!!.isNotEmpty() && book!!.subject != "Select") {
                     if (book!!.price!!.isNotEmpty() && price != "0") {
                         if (book!!.phone!!.isNotEmpty()) {
                             if (book!!.description!!.isNotEmpty()) {
                                 if (book!!.title!!.isNotEmpty()) {
                                     saveBook()
-                                }else showToastMsg("Fill Title")
-                            }else showToastMsg("Fill Description")
-                        }else showToastMsg("Fill Phone number field")
-                    }else showToastMsg("Enter valid Price")
-                }else showToastMsg("Enter subject")
-            }else showToastMsg("Enter Semester")
-        }else showToastMsg("Select at least one photo")
+                                } else showToastMsg("Fill Title")
+                            } else showToastMsg("Fill Description")
+                        } else showToastMsg("Fill Phone number field")
+                    } else showToastMsg("Enter valid Price")
+                } else showToastMsg("Enter subject")
+            } else showToastMsg("Enter Semester")
+        } else showToastMsg("Select at least one photo")
     }
 
     //2.2.Create Book Object
-    private fun createBook(): Book{
+    private fun createBook(): Book {
         val title = titleEditText.text.toString()
         val description = descriptionEditText.text.toString()
         val phone = phoneNumberEditText.text.toString()
@@ -88,7 +89,15 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
         val subject = subjectSpinner.selectedItem.toString()
         val userId = ConfigureFirebase.getUserId()
 
-        return Book(title = title, description = description, phone = phone, semester = semester, subject = subject, price = price, userId = userId)
+        return Book(
+            title = title,
+            description = description,
+            phone = phone,
+            semester = semester,
+            subject = subject,
+            price = price,
+            userId = userId
+        )
     }
 
     //2.3.Save Book
@@ -112,7 +121,7 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
     private fun savePhotoStorage(imageUrl: String, listSize: Int, i: Int) {
         val userId = ConfigureFirebase.getUserId()!!
 
-        val imageBook:StorageReference = storageReference!!
+        val imageBook: StorageReference = storageReference!!
             .child("images")
             .child("books")
             .child(userId)
@@ -120,14 +129,14 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
 
         val uploadTask = imageBook.putFile(Uri.parse(imageUrl))
         uploadTask.addOnSuccessListener { taskSnapshot ->
-            taskSnapshot.metadata?.reference?.downloadUrl?.addOnCompleteListener{task ->
+            taskSnapshot.metadata?.reference?.downloadUrl?.addOnCompleteListener { task ->
                 val convertUrl = task.result.toString()
 
                 photoUrlList.add(convertUrl)
 
-                if(listSize == photoUrlList.size){
+                if (listSize == photoUrlList.size) {
                     book!!.setPhoto(photoUrlList)
-                    ConfigureFirebase.getBookDbRef().add(book!!).addOnCompleteListener{
+                    ConfigureFirebase.getBookDbRef().add(book!!).addOnCompleteListener {
                         dialog!!.dismiss()
                         finish()
                     }
@@ -137,15 +146,14 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
-
-    private fun showToastMsg(message: String){
+    private fun showToastMsg(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
 
     //1.1.On Image Click
     override fun onClick(v: View?) {
-        when(v!!.id){
+        when (v!!.id) {
             R.id.bookImageView1 -> chooseImage(1)
             R.id.bookImageView2 -> chooseImage(2)
             R.id.bookImageView3 -> chooseImage(3)
@@ -153,7 +161,7 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     //1.2.Open Gallery
-    private fun chooseImage(requestCode: Int){
+    private fun chooseImage(requestCode: Int) {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent, requestCode)
     }
@@ -162,11 +170,11 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(resultCode == Activity.RESULT_OK){
+        if (resultCode == Activity.RESULT_OK) {
             val image = data!!.data
             val imagePath = image.toString()
 
-            when (requestCode){
+            when (requestCode) {
                 1 -> bookImageView1.setImageURI(image)
                 2 -> bookImageView2.setImageURI(image)
                 3 -> bookImageView3.setImageURI(image)
@@ -176,18 +184,22 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     //1.3.1.Request Permission Again
-    override fun onRequestPermissionsResult( requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-        for(permissionResult in grantResults){
-            if(permissionResult == PackageManager.PERMISSION_DENIED){
+        for (permissionResult in grantResults) {
+            if (permissionResult == PackageManager.PERMISSION_DENIED) {
                 permissionAlert()
             }
         }
     }
 
     //1.3.1.1.Permission Grant alert
-    private fun permissionAlert(){
+    private fun permissionAlert() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Permissions Denied")
         builder.setMessage("Please grant the required permission to use the app")
@@ -205,20 +217,38 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     //Spinner
-    private fun loadSpinnerData(){
+    private fun loadSpinnerData() {
 
         // semester
         val semester = resources.getStringArray(R.array.semester)
-        val semesterAdapter: ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_item, semester)
+        val semesterAdapter: ArrayAdapter<String> =
+            ArrayAdapter(this, android.R.layout.simple_spinner_item, semester)
 
         semesterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         semesterSpinner.adapter = semesterAdapter
 
-        // subject
-        val subject = resources.getStringArray(R.array.subject)
-        val subjectAdapter: ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_item, subject)
+        // subject- update subject based semester
+        var subject: Array<String>? = resources.getStringArray(R.array.sub_sem_1)
 
-        subjectAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        subjectSpinner.adapter = subjectAdapter
+        semesterSpinner.onItemSelectedListener = object : OnItemSelectedListener {
+
+            override fun onItemSelected( parent: AdapterView<*>?, view: View?, position: Int, id: Long ) {
+                when (position) {
+                    1 -> subject = resources.getStringArray(R.array.sub_sem_1)
+                    2 -> subject = resources.getStringArray(R.array.sub_sem_2)
+                    3 -> subject = resources.getStringArray(R.array.sub_sem_3)
+                    4 -> subject = resources.getStringArray(R.array.sub_sem_4)
+                    5 -> subject = resources.getStringArray(R.array.sub_sem_5)
+                    6 -> subject = resources.getStringArray(R.array.sub_sem_6)
+                    7 -> subject = resources.getStringArray(R.array.sub_sem_7)
+                    8 -> subject = resources.getStringArray(R.array.sub_sem_8)
+                }
+                val subjectAdapter: ArrayAdapter<String> = ArrayAdapter(this@RegisterBookActivity, android.R.layout.simple_spinner_item, subject!!)
+                subjectAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                subjectSpinner.adapter = subjectAdapter
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
     }
 }

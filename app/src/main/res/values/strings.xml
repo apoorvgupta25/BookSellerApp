@@ -5,6 +5,7 @@
     <string name="rs">\u20A8</string>
     <string name="Rs">\u20B9</string>
     <string-array name="semester">
+        <item>Select</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -15,14 +16,76 @@
         <item>8</item>
     </string-array>
 
-    <string-array name="subject">
-        <item>Maths</item>
+    <string-array name="sub_sem_1">
+        <item>Select</item>
+        <item>Maths-1</item>
+        <item>Chemistry</item>
+        <item>EEEE</item>
+        <item>ED</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="sub_sem_2">
+        <item>Select</item>
+        <item>Maths-2</item>
+        <item>Physics</item>
+        <item>EM</item>
+        <item>PIC</item>
+        <item>Others</item>
+    </string-array>
+
+
+    <string-array name="sub_sem_3">
+        <item>Select</item>
+        <item>Maths-3</item>
         <item>DMS</item>
         <item>DCN</item>
-        <item>Data Structure</item>
-        <item>Java</item>
+        <item>Dis</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="sub_sem_4">
+        <item>Select</item>
+        <item>Maths-4</item>
+        <item>ITC</item>
+        <item>AA</item>
+        <item>AD</item>
+        <item>Others</item>
+    </string-array>
+
+
+    <string-array name="sub_sem_5">
+        <item>Select</item>
+        <item>Maths-5</item>
+        <item>DS</item>
+        <item>Cloud Computing</item>
         <item>Python</item>
+        <item>Others</item>
+    </string-array>
+
+
+    <string-array name="sub_sem_6">
+        <item>Select</item>
+        <item>Maths-6</item>
+        <item>Java</item>
         <item>Algorithms</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="sub_sem_7">
+        <item>Select</item>
+        <item>Maths-7</item>
+        <item>ML</item>
+        <item>NLP</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="sub_sem_8">
+        <item>Select</item>
+        <item>Maths-8</item>
+        <item>CS</item>
+        <item>Adv Java</item>
+        <item>Adv Python</item>
         <item>Others</item>
     </string-array>
 </resources>

@@ -56,7 +56,14 @@ int animator mtrl_fab_show_motion_spec 0x7f02000c
 int animator mtrl_fab_transformation_sheet_collapse_spec 0x7f02000d
 int animator mtrl_fab_transformation_sheet_expand_spec 0x7f02000e
 int array semester 0x7f030000
-int array subject 0x7f030001
+int array sub_sem_1 0x7f030001
+int array sub_sem_2 0x7f030002
+int array sub_sem_3 0x7f030003
+int array sub_sem_4 0x7f030004
+int array sub_sem_5 0x7f030005
+int array sub_sem_6 0x7f030006
+int array sub_sem_7 0x7f030007
+int array sub_sem_8 0x7f030008
 int attr DialogSpotColor 0x7f040000
 int attr DialogSpotCount 0x7f040001
 int attr DialogTitleAppearance 0x7f040002
