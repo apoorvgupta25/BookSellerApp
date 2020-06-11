@@ -1765,6 +1765,7 @@ id decor_content_parent
 id default_activity_button
 id depth
 id descriptionEditText
+id descriptionLabel
 id design_bottom_sheet
 id design_menu_item_action_area
 id design_menu_item_action_area_stub
@@ -1998,6 +1999,7 @@ id time
 id title
 id titleDividerNoCustom
 id titleEditText
+id titleLabel
 id title_template
 id toolbarHome
 id toolbarMy
@@ -2018,6 +2020,7 @@ id useLogo
 id vertical
 id view
 id view2
+id view3
 id view_offset_helper
 id visible
 id visible_removing_fragment_view_tag
