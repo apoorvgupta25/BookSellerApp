@@ -1469,9 +1469,11 @@ drawable dmax_spots_spot
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_add
+drawable ic_book
 drawable ic_calendar_black_24dp
 drawable ic_clear_black_24dp
 drawable ic_edit_black_24dp
+drawable ic_home
 drawable ic_keyboard_arrow_left_black_24dp
 drawable ic_keyboard_arrow_right_black_24dp
 drawable ic_launcher_background
@@ -1504,6 +1506,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable side_nav_bar
 drawable test_custom_background
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -1576,6 +1579,7 @@ id adjust_width
 id alertTitle
 id all
 id always
+id appBarLayout
 id async
 id auto
 id barrier
@@ -1627,6 +1631,8 @@ id direct
 id disableHome
 id dmax_spots_progress
 id dmax_spots_title
+id drawerLayout
+id drawerLayoutMy
 id dropdown_menu
 id edit_query
 id emailEditText
@@ -1659,6 +1665,7 @@ id guideline1
 id guideline2
 id hideable
 id home
+id homeActivity2
 id homeAsUp
 id horizontal
 id icon
@@ -1716,9 +1723,12 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id multiply
 id myBooks
+id myBooksActivity2
 id myBooksRecyclerView
 id nav_controller_view_tag
 id nav_host_fragment_container
+id navigationView
+id navigationViewMy
 id navigation_header_container
 id never
 id noScroll
@@ -1821,6 +1831,7 @@ id textEnd
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
+id textView
 id textView2
 id textView3
 id text_input_end_icon
@@ -1834,6 +1845,7 @@ id titleDividerNoCustom
 id titleEditText
 id titleTextView
 id title_template
+id toolbar
 id top
 id topPanel
 id touch_outside
@@ -1995,6 +2007,7 @@ layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
 layout view_carousel
+menu drawer_menu
 menu main_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
@@ -2035,6 +2048,7 @@ string character_counter_overflowed_content_description
 string character_counter_pattern
 string chip_text
 string clear_text_end_icon_content_description
+string close
 string common_google_play_services_enable_button
 string common_google_play_services_enable_text
 string common_google_play_services_enable_title
@@ -2102,6 +2116,7 @@ string mtrl_picker_toggle_to_text_input_mode
 string mtrl_picker_toggle_to_year_selection
 string nav_app_bar_navigate_up_description
 string nav_app_bar_open_drawer_description
+string open
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through
@@ -2119,6 +2134,9 @@ style Animation_AppCompat_Tooltip
 style Animation_Design_BottomSheetDialog
 style Animation_MaterialComponents_BottomSheetDialog
 style AppTheme
+style AppTheme_AppBarOverlay
+style AppTheme_NoActionBar
+style AppTheme_PopupOverlay
 style Base_AlertDialog_AppCompat
 style Base_AlertDialog_AppCompat_Light
 style Base_Animation_AppCompat_Dialog

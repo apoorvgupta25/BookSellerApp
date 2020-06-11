@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookseller.R
@@ -19,14 +20,17 @@ import com.example.bookseller.model.Book
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_home.toolbar
+import kotlinx.android.synthetic.main.activity_my_books.*
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     //recycler
     private var booksList: ArrayList<Book> = ArrayList()
@@ -39,11 +43,22 @@ class HomeActivity : AppCompatActivity() {
 
     private var dialogHomeActivity: AlertDialog? = null
 
-    var selectedSemester: String = "Semester"
+    private var selectedSemester = "Semester"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        //toolbar
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true);
+
+        //navigation drawer
+        val toggle = ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
 
         saveUserInDB()
 
@@ -125,6 +140,7 @@ class HomeActivity : AppCompatActivity() {
         else Toast.makeText(this@HomeActivity, "Select Semester First", Toast.LENGTH_SHORT).show()
     }
 
+    // get all books
     private fun getAllBooks(){
         dialogHomeActivity = SpotsDialog.Builder()
             .setContext(this)
@@ -171,6 +187,7 @@ class HomeActivity : AppCompatActivity() {
             }
     }
 
+    // get books by semester
     private fun geBooksBySemester(selectedSemester: String){
         dialogHomeActivity = SpotsDialog.Builder()
             .setContext(this)
@@ -194,6 +211,7 @@ class HomeActivity : AppCompatActivity() {
             }
     }
 
+    // get book by subject
     private fun getBooksBySubject(selectedSubject: String, selectedSemester: String){
         dialogHomeActivity = SpotsDialog.Builder()
             .setContext(this)
@@ -292,6 +310,21 @@ class HomeActivity : AppCompatActivity() {
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    // Navigation Drawer
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId){
+            R.id.homeActivity2 -> {
+                drawerLayout.closeDrawers();
+                true
+            }
+            R.id.myBooksActivity2 ->{
+                startActivity(Intent(this, MyBooksActivity::class.java))
+                true
+            }
+            else -> false
         }
     }
 

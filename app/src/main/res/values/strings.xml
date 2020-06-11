@@ -2,6 +2,9 @@
     <string name="app_name">BookSeller</string>
 <!--    <string name="webclient_id">457686713428-l5a036u35pjonbapr8o85f43qhn0iqf6.apps.googleusercontent.com</string>-->
 
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
     <string name="rs">\u20A8</string>
     <string name="Rs">\u20B9</string>
     <string-array name="semester">

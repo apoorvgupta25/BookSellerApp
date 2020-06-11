@@ -4,6 +4,10 @@
         "source": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
+        "merged": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_home.xml.flat",
+        "source": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\src\\main\\res\\drawable-v24\\ic_home.xml"
+    },
+    {
         "merged": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
@@ -42,6 +46,10 @@
     {
         "merged": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\build\\intermediates\\res\\merged\\debug\\menu_drawer_menu.xml.flat",
+        "source": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\src\\main\\res\\menu\\drawer_menu.xml"
     },
     {
         "merged": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
@@ -94,5 +102,13 @@
     {
         "merged": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
         "source": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_side_nav_bar.xml.flat",
+        "source": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\src\\main\\res\\drawable-v24\\side_nav_bar.xml"
+    },
+    {
+        "merged": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_book.xml.flat",
+        "source": "C:\\Users\\AG\\AndroidStudioProjects\\BookSeller\\app\\src\\main\\res\\drawable\\ic_book.xml"
     }
 ]
