@@ -96,7 +96,8 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
             semester = semester,
             subject = subject,
             price = price,
-            userId = userId
+            userId = userId,
+            reported = false
         )
     }
 

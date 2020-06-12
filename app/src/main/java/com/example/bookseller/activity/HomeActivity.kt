@@ -43,6 +43,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private var selectedSemester = "Semester"
 
+    private var bookUidList: ArrayList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +73,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         Handler().postDelayed({
             getAllBooks()
-        },2000)
+        },0)
         setUpRecyclerView()
     }
 
@@ -186,8 +187,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     return@addSnapshotListener;
                 }
                 booksList.clear()
+                bookUidList.clear()
                 for (documentSnapshot in querySnapshot!!){
                     booksList.add(documentSnapshot.toObject(Book::class.java))
+                    bookUidList.add(documentSnapshot.id)
                 }
                 bookAdapter.notifyDataSetChanged()
                 bookAdapter.isShimmer = false
@@ -211,8 +214,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     return@addSnapshotListener;
                 }
                 booksList.clear()
+                bookUidList.clear()
                 for (documentSnapshot in querySnapshot!!){
                     booksList.add(documentSnapshot.toObject(Book::class.java))
+                    bookUidList.add(documentSnapshot.id)
                 }
                 bookAdapter.notifyDataSetChanged()
                 bookAdapter.isShimmer = false
@@ -237,10 +242,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     return@addSnapshotListener;
                 }
                 booksList.clear()
+                bookUidList.clear()
                 for (documentSnapshot in querySnapshot!!){
                     val book = documentSnapshot.toObject(Book::class.java)
                     Log.i("query",book.toString())
                     booksList.add(documentSnapshot.toObject(Book::class.java))
+                    bookUidList.add(documentSnapshot.id)
                 }
                 bookAdapter.notifyDataSetChanged()
                 bookAdapter.isShimmer = false
@@ -294,8 +301,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         bookAdapter.setOnBookClickListener(object : BookAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
                 val selectedBook = booksList[position]
+                val selectedBookUid = bookUidList[position]
                 val intent = Intent(this@HomeActivity, ViewBookActivity::class.java)
                 intent.putExtra("selectedBook",selectedBook)
+                intent.putExtra("selectedBookUid",selectedBookUid)
                 startActivity(intent)
             }
         })

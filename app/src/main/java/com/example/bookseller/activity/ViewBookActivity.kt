@@ -4,8 +4,12 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bookseller.R
+import com.example.bookseller.helper.ConfigureFirebase
 import com.example.bookseller.model.Book
 import com.squareup.picasso.Picasso
 import com.synnapps.carouselview.ImageListener
@@ -42,5 +46,37 @@ class ViewBookActivity : AppCompatActivity() {
             startActivity(Intent(Intent.ACTION_DIAL, Uri.fromParts("tel",selectedBook!!.phone, null)))
         }
 
+    }
+
+    //reportBook
+    private fun reportBook(){
+
+        ConfigureFirebase.getBookDbRef()
+            .document(intent.getStringExtra("selectedBookUid")!!)
+            .get()
+            .addOnSuccessListener {documentSnapshot ->
+                if(documentSnapshot.exists()){
+                    if(documentSnapshot.getBoolean("reported")!!){
+                        Toast.makeText(this, "This Book has been already Reported", Toast.LENGTH_SHORT).show()
+                    } else {
+                        ConfigureFirebase.getBookDbRef()
+                            .document(intent.getStringExtra("selectedBookUid")!!)
+                            .update("reported", true)
+                        Toast.makeText(this, "Book Reported", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+    }
+
+    // Menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.view_book_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.reportBook)
+            reportBook()
+        return super.onOptionsItemSelected(item)
     }
 }

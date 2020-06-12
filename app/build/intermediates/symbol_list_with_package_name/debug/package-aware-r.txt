@@ -1652,6 +1652,7 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable open_on_phone
+drawable report
 drawable rounded_corners
 drawable side_nav_bar
 drawable test_custom_background
@@ -1944,6 +1945,7 @@ id progress_circular
 id progress_horizontal
 id radial
 id radio
+id reportBook
 id restart
 id reverse
 id right
@@ -2262,6 +2264,7 @@ layout ws_single_page_nav_drawer_peek_view
 layout ws_single_page_nav_drawer_text
 layout ws_wearable_drawer_view
 menu drawer_menu
+menu view_book_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
