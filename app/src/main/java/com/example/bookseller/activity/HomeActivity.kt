@@ -33,6 +33,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     //recycler
     private var booksList: ArrayList<Book> = ArrayList()
+    private var bookUidList: ArrayList<String> = ArrayList()
     private lateinit var bookAdapter: BookAdapter
 
     //firebase
@@ -44,7 +45,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private var selectedSemester = "Semester"
 
-    private var bookUidList: ArrayList<String> = ArrayList()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,7 +83,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         Handler().postDelayed({
             getAllBooks()
-        },0)
+        },5000)
         setUpRecyclerView()
     }
 

@@ -1,5 +1,6 @@
 package com.example.bookseller.activity
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -50,22 +51,29 @@ class ViewBookActivity : AppCompatActivity() {
 
     //reportBook
     private fun reportBook(){
-
-        ConfigureFirebase.getBookDbRef()
-            .document(intent.getStringExtra("selectedBookUid")!!)
-            .get()
-            .addOnSuccessListener {documentSnapshot ->
-                if(documentSnapshot.exists()){
-                    if(documentSnapshot.getBoolean("reported")!!){
-                        Toast.makeText(this, "This Book has been already Reported", Toast.LENGTH_SHORT).show()
-                    } else {
-                        ConfigureFirebase.getBookDbRef()
-                            .document(intent.getStringExtra("selectedBookUid")!!)
-                            .update("reported", true)
-                        Toast.makeText(this, "Book Reported", Toast.LENGTH_SHORT).show()
+        AlertDialog.Builder(this@ViewBookActivity,R.style.AlertDialogTheme)
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .setTitle("Report User")
+            .setMessage("Do you want to report book?")
+            .setPositiveButton(android.R.string.yes){_,_ ->
+                ConfigureFirebase.getBookDbRef()
+                    .document(intent.getStringExtra("selectedBookUid")!!)
+                    .get()
+                    .addOnSuccessListener {documentSnapshot ->
+                        if(documentSnapshot.exists()){
+                            if(documentSnapshot.getBoolean("reported")!!){
+                                Toast.makeText(this, "This Book has been already Reported", Toast.LENGTH_SHORT).show()
+                            } else {
+                                ConfigureFirebase.getBookDbRef()
+                                    .document(intent.getStringExtra("selectedBookUid")!!)
+                                    .update("reported", true)
+                                Toast.makeText(this, "Book Reported", Toast.LENGTH_SHORT).show()
+                            }
+                        }
                     }
-                }
             }
+            .setNegativeButton(android.R.string.no, null)
+            .show()
     }
 
     // Menu

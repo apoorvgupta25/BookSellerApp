@@ -1616,6 +1616,8 @@ drawable ic_add
 drawable ic_book
 drawable ic_calendar_black_24dp
 drawable ic_clear_black_24dp
+drawable ic_delete
+drawable ic_delete_outline
 drawable ic_edit_black_24dp
 drawable ic_home
 drawable ic_keyboard_arrow_left_black_24dp
@@ -1796,6 +1798,7 @@ id dark
 id date_picker_actions
 id decor_content_parent
 id default_activity_button
+id deleteImageView
 id depth
 id descriptionEditText
 id descriptionLabel
@@ -1946,6 +1949,7 @@ id progress_horizontal
 id radial
 id radio
 id reportBook
+id reportImageView
 id restart
 id reverse
 id right
@@ -2177,6 +2181,7 @@ layout activity_register_book
 layout activity_signup
 layout activity_view_book
 layout book_item
+layout book_item_my
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -2386,6 +2391,7 @@ string ws_action_drawer_content_description
 string ws_navigation_drawer_content_description
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
+style AlertDialogTheme
 style Animation_AppCompat_Dialog
 style Animation_AppCompat_DropDownUp
 style Animation_AppCompat_Tooltip

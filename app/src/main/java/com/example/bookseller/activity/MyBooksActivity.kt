@@ -5,17 +5,20 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookseller.R
 import com.example.bookseller.adapter.BookAdapter
+import com.example.bookseller.adapter.MyBookAdapter
 import com.example.bookseller.helper.ConfigureFirebase
 import com.example.bookseller.model.Book
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -29,7 +32,8 @@ class MyBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
 
     //recycler
     private var myBooksList: ArrayList<Book> = ArrayList()
-    private lateinit var myBooksAdapter: BookAdapter
+    private var myBookUidList: ArrayList<String> = ArrayList()
+    private lateinit var myBooksAdapter: MyBookAdapter
 
     private var dialog: AlertDialog? = null
 
@@ -88,8 +92,10 @@ class MyBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
                     return@addSnapshotListener;
                 }
                 myBooksList.clear()
+                myBookUidList.clear()
                 for (documentSnapshot in querySnapshot!!){
                     myBooksList.add(documentSnapshot.toObject(Book::class.java))
+                    myBookUidList.add(documentSnapshot.id)
                 }
                 myBooksAdapter.isShimmer = false
                 myBooksAdapter.notifyDataSetChanged()
@@ -99,11 +105,28 @@ class MyBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
 
     // set up recycler view
     private fun setUpRecyclerView() {
-        myBooksAdapter = BookAdapter(myBooksList)
+        myBooksAdapter = MyBookAdapter(myBooksList)
         myBooksRecyclerView.layoutManager = LinearLayoutManager(this)
         myBooksRecyclerView.adapter = myBooksAdapter
         myBooksAdapter.notifyDataSetChanged()
 
+        myBooksAdapter.setOnBookClickListener(object: MyBookAdapter.OnItemClickListener{
+            override fun onDeleteClick(position: Int) {
+
+                AlertDialog.Builder(this@MyBooksActivity,R.style.AlertDialogTheme)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("Confirm Delete")
+                    .setMessage("Do you want to delete the Book?")
+                    .setPositiveButton(android.R.string.yes) { _, _ ->
+                        deleteBook(position)
+                    }.setNegativeButton(android.R.string.no, null)
+                    .show()
+            }
+
+            override fun onReportClick(position: Int) {
+                Toast.makeText(this@MyBooksActivity, "This has been Reported", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     // Navigation Drawer
@@ -127,6 +150,15 @@ class MyBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
             }
             else -> false
         }
+    }
+
+    //delete
+    private fun deleteBook(position: Int){
+        ConfigureFirebase.getBookDbRef().document(myBookUidList[position]).delete()
+        myBookUidList.removeAt(position)
+        myBooksList.removeAt(position)
+        myBooksAdapter.notifyDataSetChanged()
+        Snackbar.make(findViewById(android.R.id.content),"Book Deleted Successfully", Snackbar.LENGTH_SHORT).show()
     }
 
     // logout

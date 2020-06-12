@@ -51,7 +51,7 @@ class BookAdapter(private val booksList: ArrayList<Book>) : RecyclerView.Adapter
 
             holder.itemView.bookTitleTextView.background = null
             holder.itemView.bookPriceTextView.background = null
-            holder.imageView?.background = null
+            holder.imageView.background = null
 
             holder.itemView.bookTitleTextView.text = currentBook.title
             holder.itemView.bookPriceTextView.text = currentBook.price.toString()
@@ -86,14 +86,14 @@ class BookAdapter(private val booksList: ArrayList<Book>) : RecyclerView.Adapter
     // View Holder Class
     inner class BookViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var imageView: ImageView? = null
+        var imageView: ImageView = itemView.findViewById(R.id.imageView)
         init {
-            imageView = itemView.findViewById(R.id.imageView)
+//            imageView =
 
 
             itemView.setOnClickListener {
                 if(listener != null){
-                    val position = getAdapterPosition()
+                    val position = adapterPosition
                     if (position != RecyclerView.NO_POSITION) {
                         listener!!.onItemClick(position)
                     }
