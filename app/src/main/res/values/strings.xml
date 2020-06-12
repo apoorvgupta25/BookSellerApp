@@ -19,6 +19,18 @@
         <item>8</item>
     </string-array>
 
+    <string-array name="semester_home">
+        <item>All</item><!--0th position in array-->
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+
     <string-array name="sub_sem_1">
         <item>Subject</item>
         <item>Maths-1</item>
@@ -36,7 +48,6 @@
         <item>PIC</item>
         <item>Others</item>
     </string-array>
-
 
     <string-array name="sub_sem_3">
         <item>Subject</item>
@@ -56,7 +67,6 @@
         <item>Others</item>
     </string-array>
 
-
     <string-array name="sub_sem_5">
         <item>Subject</item>
         <item>Maths-5</item>
@@ -65,7 +75,6 @@
         <item>Python</item>
         <item>Others</item>
     </string-array>
-
 
     <string-array name="sub_sem_6">
         <item>Subject</item>
@@ -91,10 +100,76 @@
         <item>Adv Python</item>
         <item>Others</item>
     </string-array>
-    <string name="title_activity_view_book">ViewBookActivity</string>
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
-    <string name="hello_world">Hello Square World!</string>
+
+
+    <string-array name="sub_sem_1_home">
+        <item>All</item>
+        <item>Maths-1</item>
+        <item>Chemistry</item>
+        <item>EEEE</item>
+        <item>ED</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="sub_sem_2_home">
+        <item>All</item>
+        <item>Maths-2</item>
+        <item>Physics</item>
+        <item>EM</item>
+        <item>PIC</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="sub_sem_3_home">
+        <item>All</item>
+        <item>Maths-3</item>
+        <item>DMS</item>
+        <item>DCN</item>
+        <item>Dis</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="sub_sem_4_home">
+        <item>All</item>
+        <item>Maths-4</item>
+        <item>ITC</item>
+        <item>AA</item>
+        <item>AD</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="sub_sem_5_home">
+        <item>All</item>
+        <item>Maths-5</item>
+        <item>DS</item>
+        <item>Cloud Computing</item>
+        <item>Python</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="sub_sem_6_home">
+        <item>All</item>
+        <item>Maths-6</item>
+        <item>Java</item>
+        <item>Algorithms</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="sub_sem_7_home">
+        <item>All</item>
+        <item>Maths-7</item>
+        <item>ML</item>
+        <item>NLP</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="sub_sem_8_home">
+        <item>All</item>
+        <item>Maths-8</item>
+        <item>CS</item>
+        <item>Adv Java</item>
+        <item>Adv Python</item>
+        <item>Others</item>
+    </string-array>
+
 </resources>

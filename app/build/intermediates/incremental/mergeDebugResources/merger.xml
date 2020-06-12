@@ -5904,7 +5904,71 @@
         <item>Adv Java</item>
         <item>Adv Python</item>
         <item>Others</item>
-    </string-array><string name="title_activity_view_book">ViewBookActivity</string><string name="hello_world">Hello Square World!</string></file><file path="C:\Users\AG\AndroidStudioProjects\BookSeller\app\src\main\res\values\styles.xml" qualifiers=""><style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    </string-array><string-array name="sub_sem_6_home">
+        <item>All</item>
+        <item>Maths-6</item>
+        <item>Java</item>
+        <item>Algorithms</item>
+        <item>Others</item>
+    </string-array><string-array name="sub_sem_8_home">
+        <item>All</item>
+        <item>Maths-8</item>
+        <item>CS</item>
+        <item>Adv Java</item>
+        <item>Adv Python</item>
+        <item>Others</item>
+    </string-array><string-array name="sub_sem_3_home">
+        <item>All</item>
+        <item>Maths-3</item>
+        <item>DMS</item>
+        <item>DCN</item>
+        <item>Dis</item>
+        <item>Others</item>
+    </string-array><string-array name="sub_sem_7_home">
+        <item>All</item>
+        <item>Maths-7</item>
+        <item>ML</item>
+        <item>NLP</item>
+        <item>Others</item>
+    </string-array><string-array name="semester_home">
+        <item>All</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array><string-array name="sub_sem_2_home">
+        <item>All</item>
+        <item>Maths-2</item>
+        <item>Physics</item>
+        <item>EM</item>
+        <item>PIC</item>
+        <item>Others</item>
+    </string-array><string-array name="sub_sem_4_home">
+        <item>All</item>
+        <item>Maths-4</item>
+        <item>ITC</item>
+        <item>AA</item>
+        <item>AD</item>
+        <item>Others</item>
+    </string-array><string-array name="sub_sem_1_home">
+        <item>All</item>
+        <item>Maths-1</item>
+        <item>Chemistry</item>
+        <item>EEEE</item>
+        <item>ED</item>
+        <item>Others</item>
+    </string-array><string-array name="sub_sem_5_home">
+        <item>All</item>
+        <item>Maths-5</item>
+        <item>DS</item>
+        <item>Cloud Computing</item>
+        <item>Python</item>
+        <item>Others</item>
+    </string-array></file><file path="C:\Users\AG\AndroidStudioProjects\BookSeller\app\src\main\res\values\styles.xml" qualifiers=""><style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

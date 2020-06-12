@@ -25,7 +25,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
-import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_home.toolbarHome
 
@@ -86,7 +85,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val spinnerView = layoutInflater.inflate(R.layout.dialog_spinner, null)
 
         val semesterHomeSpinner = spinnerView.findViewById<Spinner>(R.id.spinnerFilter)
-        val semester = resources.getStringArray(R.array.semester)
+        val semester = resources.getStringArray(R.array.semester_home)
         val semesterAdapter: ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_item, semester)
 
         semesterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -97,7 +96,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         dialogSemester
             .setPositiveButton("OK"){_, _ ->
                 selectedSemester = semesterHomeSpinner.selectedItem.toString()
-                geBooksBySemester(selectedSemester)
+                if(selectedSemester == "All") getAllBooks()
+                else getBooksBySemester(selectedSemester)
             }
             .setNegativeButton("Cancel"){_,_ -> }
 
@@ -117,14 +117,14 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val subjectHomeSpinner = spinnerView.findViewById<Spinner>(R.id.spinnerFilter)
             var subject: Array<String> = resources.getStringArray(R.array.sub_sem_1)
             when(selectedSemester){
-                "1" -> subject = resources.getStringArray(R.array.sub_sem_1)
-                "2" -> subject = resources.getStringArray(R.array.sub_sem_2)
-                "3" -> subject = resources.getStringArray(R.array.sub_sem_3)
-                "4" -> subject = resources.getStringArray(R.array.sub_sem_4)
-                "5" -> subject = resources.getStringArray(R.array.sub_sem_5)
-                "6" -> subject = resources.getStringArray(R.array.sub_sem_6)
-                "7" -> subject = resources.getStringArray(R.array.sub_sem_7)
-                "8" -> subject = resources.getStringArray(R.array.sub_sem_8)
+                "1" -> subject = resources.getStringArray(R.array.sub_sem_1_home)
+                "2" -> subject = resources.getStringArray(R.array.sub_sem_2_home)
+                "3" -> subject = resources.getStringArray(R.array.sub_sem_3_home)
+                "4" -> subject = resources.getStringArray(R.array.sub_sem_4_home)
+                "5" -> subject = resources.getStringArray(R.array.sub_sem_5_home)
+                "6" -> subject = resources.getStringArray(R.array.sub_sem_6_home)
+                "7" -> subject = resources.getStringArray(R.array.sub_sem_7_home)
+                "8" -> subject = resources.getStringArray(R.array.sub_sem_8_home)
             }
             val subjectAdapter: ArrayAdapter<String> = ArrayAdapter(this@HomeActivity, android.R.layout.simple_spinner_item, subject)
 
@@ -136,7 +136,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             dialogSubject
                 .setPositiveButton("OK"){_, _ ->
                     val selectedSubject = subjectHomeSpinner.selectedItem.toString()
-                    getBooksBySubject(selectedSubject, selectedSemester)
+                    if(selectedSubject == "All") getBooksBySemester(selectedSemester)
+                    else getBooksBySubject(selectedSubject, selectedSemester)
                 }
                 .setNegativeButton("Cancel"){_,_ -> }
 
@@ -195,7 +196,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     // get books by semester
-    private fun geBooksBySemester(selectedSemester: String){
+    private fun getBooksBySemester(selectedSemester: String){
 //        dialogHomeActivity = SpotsDialog.Builder()
 //            .setContext(this)
 //            .setMessage("Getting Books By Semster")
