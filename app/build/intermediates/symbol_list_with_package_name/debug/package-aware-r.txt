@@ -669,6 +669,26 @@ attr shapeAppearanceLargeComponent
 attr shapeAppearanceMediumComponent
 attr shapeAppearanceOverlay
 attr shapeAppearanceSmallComponent
+attr shimmer_auto_start
+attr shimmer_base_alpha
+attr shimmer_base_color
+attr shimmer_clip_to_children
+attr shimmer_colored
+attr shimmer_direction
+attr shimmer_dropoff
+attr shimmer_duration
+attr shimmer_fixed_height
+attr shimmer_fixed_width
+attr shimmer_height_ratio
+attr shimmer_highlight_alpha
+attr shimmer_highlight_color
+attr shimmer_intensity
+attr shimmer_repeat_count
+attr shimmer_repeat_delay
+attr shimmer_repeat_mode
+attr shimmer_shape
+attr shimmer_tilt
+attr shimmer_width_ratio
 attr showAsAction
 attr showDividers
 attr showMotionSpec
@@ -872,6 +892,7 @@ color accent_material_dark
 color accent_material_light
 color androidx_core_ripple_material_light
 color androidx_core_secondary_text_default_material_light
+color background
 color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
@@ -1732,6 +1753,7 @@ id bookSemesterTextView
 id bookSubjectTextView
 id bookTitleTextView
 id bottom
+id bottom_to_top
 id butt
 id buttonPanel
 id callButton
@@ -1833,9 +1855,11 @@ id item_touch_helper_previous_elevation
 id labeled
 id largeLabel
 id left
+id left_to_right
 id light
 id line1
 id line3
+id linear
 id linearLayout
 id listMode
 id list_item
@@ -1908,10 +1932,14 @@ id priceEditText
 id profile
 id progress_circular
 id progress_horizontal
+id radial
 id radio
+id restart
+id reverse
 id right
 id right_icon
 id right_side
+id right_to_left
 id round
 id rounded
 id save_non_transition_alpha
@@ -1938,6 +1966,7 @@ id selected
 id semesterButton
 id semesterLabel
 id semesterSpinner
+id shimmer_layout
 id shortcut
 id showCustom
 id showHome
@@ -1999,13 +2028,13 @@ id time
 id title
 id titleDividerNoCustom
 id titleEditText
-id titleLabel
 id title_template
 id toolbarHome
 id toolbarMy
 id toolbarProfile
 id top
 id topPanel
+id top_to_bottom
 id touch_outside
 id transition_current_scene
 id transition_layout_save
@@ -3126,6 +3155,7 @@ styleable ScrimInsetsFrameLayout insetForeground
 styleable ScrollingViewBehavior_Layout behavior_overlapTop
 styleable SearchView android_focusable android_maxWidth android_inputType android_imeOptions closeIcon commitIcon defaultQueryHint goIcon iconifiedByDefault layout queryBackground queryHint searchHintIcon searchIcon submitBackground suggestionRowLayout voiceIcon
 styleable ShapeAppearance cornerFamily cornerFamilyBottomLeft cornerFamilyBottomRight cornerFamilyTopLeft cornerFamilyTopRight cornerSize cornerSizeBottomLeft cornerSizeBottomRight cornerSizeTopLeft cornerSizeTopRight
+styleable ShimmerFrameLayout shimmer_auto_start shimmer_base_alpha shimmer_base_color shimmer_clip_to_children shimmer_colored shimmer_direction shimmer_dropoff shimmer_duration shimmer_fixed_height shimmer_fixed_width shimmer_height_ratio shimmer_highlight_alpha shimmer_highlight_color shimmer_intensity shimmer_repeat_count shimmer_repeat_delay shimmer_repeat_mode shimmer_shape shimmer_tilt shimmer_width_ratio
 styleable SignInButton buttonSize colorScheme scopeUris
 styleable Snackbar snackbarButtonStyle snackbarStyle
 styleable SnackbarLayout android_maxWidth actionTextColorAlpha animationMode backgroundOverlayColorAlpha elevation maxActionInlineWidth

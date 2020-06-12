@@ -3,6 +3,7 @@ package com.example.bookseller.activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
@@ -69,7 +70,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onStart() {
         super.onStart()
-        getAllBooks()
+
+        Handler().postDelayed({
+            getAllBooks()
+        },2000)
+        setUpRecyclerView()
     }
 
     //filter semester wise
@@ -143,12 +148,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // get all books
     private fun getAllBooks(){
-        dialogHomeActivity = SpotsDialog.Builder()
-            .setContext(this)
-            .setMessage("Getting Books")
-            .setCancelable(false)
-            .build()
-        dialogHomeActivity!!.show()
+//        dialogHomeActivity = SpotsDialog.Builder()
+//            .setContext(this)
+//            .setMessage("Getting Books")
+//            .setCancelable(false)
+//            .build()
+//        dialogHomeActivity!!.show()
 
 
         // Sub-Collection Query
@@ -184,18 +189,19 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     booksList.add(documentSnapshot.toObject(Book::class.java))
                 }
                 bookAdapter.notifyDataSetChanged()
-                dialogHomeActivity!!.dismiss()
+                bookAdapter.isShimmer = false
+//                dialogHomeActivity!!.dismiss()
             }
     }
 
     // get books by semester
     private fun geBooksBySemester(selectedSemester: String){
-        dialogHomeActivity = SpotsDialog.Builder()
-            .setContext(this)
-            .setMessage("Getting Books By Semster")
-            .setCancelable(false)
-            .build()
-        dialogHomeActivity!!.show()
+//        dialogHomeActivity = SpotsDialog.Builder()
+//            .setContext(this)
+//            .setMessage("Getting Books By Semster")
+//            .setCancelable(false)
+//            .build()
+//        dialogHomeActivity!!.show()
 
         ConfigureFirebase.getBookDbRef()
             .whereEqualTo("semester",selectedSemester)
@@ -208,18 +214,19 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     booksList.add(documentSnapshot.toObject(Book::class.java))
                 }
                 bookAdapter.notifyDataSetChanged()
-                dialogHomeActivity!!.dismiss()
+                bookAdapter.isShimmer = false
+//                dialogHomeActivity!!.dismiss()
             }
     }
 
     // get book by subject
     private fun getBooksBySubject(selectedSubject: String, selectedSemester: String){
-        dialogHomeActivity = SpotsDialog.Builder()
-            .setContext(this)
-            .setMessage("Getting Books By Subject")
-            .setCancelable(false)
-            .build()
-        dialogHomeActivity!!.show()
+//        dialogHomeActivity = SpotsDialog.Builder()
+//            .setContext(this)
+//            .setMessage("Getting Books By Subject")
+//            .setCancelable(false)
+//            .build()
+//        dialogHomeActivity!!.show()
 
         ConfigureFirebase.getBookDbRef()
             .whereEqualTo("subject",selectedSubject)
@@ -235,7 +242,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     booksList.add(documentSnapshot.toObject(Book::class.java))
                 }
                 bookAdapter.notifyDataSetChanged()
-                dialogHomeActivity!!.dismiss()
+                bookAdapter.isShimmer = false
+//                dialogHomeActivity!!.dismiss()
             }
     }
 

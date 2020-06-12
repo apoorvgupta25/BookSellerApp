@@ -12,11 +12,11 @@
         android:layout_height="200dp"
         app:fillColor="#FFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.060000002"
         app:pageColor="#000"
         app:radius="6dp"
         app:slideInterval="3000"
@@ -139,7 +139,7 @@
         android:id="@+id/semesterLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Semester"
+        android:text="Semester :"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -165,7 +165,7 @@
         android:id="@+id/subjectLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Subject"
+        android:text="Subject :"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/semesterLabel"
@@ -196,4 +196,5 @@
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/semesterLabel"
         app:layout_constraintVertical_bias="0.068" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

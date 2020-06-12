@@ -22,6 +22,7 @@ MERGED from [com.github.d-max:spots-dialog:1.1] C:\Users\AG\.gradle\caches\trans
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\AG\.gradle\caches\transforms-2\files-2.1\66eeda42617d7ed25b01a2159952dd58\jetified-picasso-2.71828\AndroidManifest.xml:2:1-14:12
 MERGED from [com.synnapps:carouselview:0.1.5] C:\Users\AG\.gradle\caches\transforms-2\files-2.1\3213ef1b08cc6b01465bb19ccc9624a2\jetified-carouselview-0.1.5\AndroidManifest.xml:2:1-16:12
 MERGED from [com.github.BlacKCaT27:CurrencyEditText:2.0.2] C:\Users\AG\.gradle\caches\transforms-2\files-2.1\d6a5d9cabed9ccbffca26ab2b8e43a2d\jetified-CurrencyEditText-2.0.2\AndroidManifest.xml:2:1-14:12
+MERGED from [com.facebook.shimmer:shimmer:0.5.0] C:\Users\AG\.gradle\caches\transforms-2\files-2.1\21f70f06359d78af3e3c169030203f22\jetified-shimmer-0.5.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\AG\.gradle\caches\transforms-2\files-2.1\82f28589a697869b0df94bcb36b67a33\jetified-appcompat-resources-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\AG\.gradle\caches\transforms-2\files-2.1\f0783322b236f9ea3ace45eec0fb0ff8\legacy-support-core-ui-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\AG\.gradle\caches\transforms-2\files-2.1\34118d2d1cf1d9d90d4aecb724bbcd9d\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -318,6 +319,8 @@ MERGED from [com.synnapps:carouselview:0.1.5] C:\Users\AG\.gradle\caches\transfo
 MERGED from [com.synnapps:carouselview:0.1.5] C:\Users\AG\.gradle\caches\transforms-2\files-2.1\3213ef1b08cc6b01465bb19ccc9624a2\jetified-carouselview-0.1.5\AndroidManifest.xml:7:5-9:41
 MERGED from [com.github.BlacKCaT27:CurrencyEditText:2.0.2] C:\Users\AG\.gradle\caches\transforms-2\files-2.1\d6a5d9cabed9ccbffca26ab2b8e43a2d\jetified-CurrencyEditText-2.0.2\AndroidManifest.xml:7:5-9:41
 MERGED from [com.github.BlacKCaT27:CurrencyEditText:2.0.2] C:\Users\AG\.gradle\caches\transforms-2\files-2.1\d6a5d9cabed9ccbffca26ab2b8e43a2d\jetified-CurrencyEditText-2.0.2\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.shimmer:shimmer:0.5.0] C:\Users\AG\.gradle\caches\transforms-2\files-2.1\21f70f06359d78af3e3c169030203f22\jetified-shimmer-0.5.0\AndroidManifest.xml:5:5-44
+MERGED from [com.facebook.shimmer:shimmer:0.5.0] C:\Users\AG\.gradle\caches\transforms-2\files-2.1\21f70f06359d78af3e3c169030203f22\jetified-shimmer-0.5.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\AG\.gradle\caches\transforms-2\files-2.1\82f28589a697869b0df94bcb36b67a33\jetified-appcompat-resources-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\AG\.gradle\caches\transforms-2\files-2.1\82f28589a697869b0df94bcb36b67a33\jetified-appcompat-resources-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\AG\.gradle\caches\transforms-2\files-2.1\f0783322b236f9ea3ace45eec0fb0ff8\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44

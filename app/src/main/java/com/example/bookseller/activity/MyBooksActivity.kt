@@ -71,12 +71,12 @@ class MyBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
     override fun onStart() {
         super.onStart()
 
-        dialog = SpotsDialog.Builder()
-            .setContext(this)
-            .setMessage("Getting your Books")
-            .setCancelable(false)
-            .build()
-        dialog!!.show()
+//        dialog = SpotsDialog.Builder()
+//            .setContext(this)
+//            .setMessage("Getting your Books")
+//            .setCancelable(false)
+//            .build()
+//        dialog!!.show()
 
 //        ConfigureFirebase.getUserDbRef(ConfigureFirebase.getUserId()!!).collection("books")       //Sub-collection Query
         ConfigureFirebase.getBookDbRef().whereEqualTo("userId",ConfigureFirebase.getUserId())
@@ -88,8 +88,9 @@ class MyBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
                 for (documentSnapshot in querySnapshot!!){
                     myBooksList.add(documentSnapshot.toObject(Book::class.java))
                 }
+                myBooksAdapter.isShimmer = false
                 myBooksAdapter.notifyDataSetChanged()
-                dialog!!.dismiss()
+//                dialog!!.dismiss()
             }
     }
 
