@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
 import com.example.bookseller.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -45,6 +46,8 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         drawerLayoutProfile.addDrawerListener(toggle);
         toggle.syncState();
         navigationViewProfile.setNavigationItemSelectedListener(this);
+        navigationViewProfile.setCheckedItem(R.id.profile)
+
     }
 
     // Navigation Drawer
@@ -63,7 +66,7 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
                 true
             }
             R.id.profile -> {
-                drawerLayoutMy.closeDrawers()
+                drawerLayoutProfile.closeDrawers()
                 true
             }
             else -> false
@@ -77,4 +80,12 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         finish()
         startActivity(Intent(this, MainActivity::class.java))
     }
+
+    override fun onBackPressed() {
+        if(drawerLayoutProfile.isDrawerOpen(GravityCompat.START)){
+            drawerLayoutProfile.closeDrawer(GravityCompat.START)
+        }
+        else super.onBackPressed()
+    }
+
 }

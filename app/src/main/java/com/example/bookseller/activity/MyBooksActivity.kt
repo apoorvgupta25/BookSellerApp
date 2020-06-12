@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookseller.R
 import com.example.bookseller.adapter.BookAdapter
@@ -19,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dmax.dialog.SpotsDialog
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_my_books.*
 import kotlinx.android.synthetic.main.activity_my_books.navigationViewMy
 import kotlinx.android.synthetic.main.activity_profile.*
@@ -60,6 +62,7 @@ class MyBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         drawerLayoutMy.addDrawerListener(toggle);
         toggle.syncState();
         navigationViewMy.setNavigationItemSelectedListener(this);
+        navigationViewMy.setCheckedItem(R.id.myBooksActivity2)
 
 
 
@@ -132,5 +135,13 @@ class MyBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         signInClient.signOut()
         finish()
         startActivity(Intent(this, MainActivity::class.java))
+    }
+
+    override fun onBackPressed() {
+        if(drawerLayoutMy.isDrawerOpen(GravityCompat.START)){
+            drawerLayoutMy.closeDrawer(GravityCompat.START)
+        }
+        else super.onBackPressed()
+
     }
 }

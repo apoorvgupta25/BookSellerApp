@@ -14,12 +14,12 @@
 
     <item android:title="Account">
         <menu>
-
+            <group android:checkableBehavior="single">
             <item
                 android:id="@+id/profile"
                 android:icon="@drawable/ic_account"
                 android:title="Profile" />
-
+            </group>
             <item
                 android:id="@+id/logout"
                 android:icon="@drawable/ic_logout"

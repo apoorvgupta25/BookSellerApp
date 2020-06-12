@@ -39,16 +39,13 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationViewProfile"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:menu="@menu/drawer_menu"
         android:layout_gravity="start"
-        app:headerLayout="@layout/nav_drawer"
-        >
-    </com.google.android.material.navigation.NavigationView>
+        app:headerLayout="@layout/nav_drawer" />
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

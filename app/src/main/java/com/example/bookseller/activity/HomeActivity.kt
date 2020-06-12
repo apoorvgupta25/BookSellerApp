@@ -12,6 +12,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookseller.R
 import com.example.bookseller.adapter.BookAdapter
@@ -58,6 +59,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayoutHome.addDrawerListener(toggle);
         toggle.syncState();
         navigationViewHome.setNavigationItemSelectedListener(this);
+        navigationViewHome.setCheckedItem(R.id.homeActivity2)
 
 //        saveUserInDB()
         mAuth = Firebase.auth
@@ -326,7 +328,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.myBooksActivity2 ->{
                 startActivity(Intent(this, MyBooksActivity::class.java))
-                drawerLayoutHome.closeDrawers()
+                drawerLayoutHome.closeDrawer(GravityCompat.START)
                 true
             }
             R.id.logout -> {
@@ -351,9 +353,14 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // saves state
     override fun onBackPressed() {
-        val intent = Intent(Intent.ACTION_MAIN)
-        intent.addCategory(Intent.CATEGORY_HOME)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
+
+        if(drawerLayoutHome.isDrawerOpen(GravityCompat.START)){
+            drawerLayoutHome.closeDrawer(GravityCompat.START)
+        } else {
+            val intent = Intent(Intent.ACTION_MAIN)
+            intent.addCategory(Intent.CATEGORY_HOME)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+        }
     }
 }
