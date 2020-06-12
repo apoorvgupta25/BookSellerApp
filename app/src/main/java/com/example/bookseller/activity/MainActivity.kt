@@ -9,9 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.bookseller.R
 import com.example.bookseller.helper.ConfigureFirebase
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.*
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.math.log
 
@@ -20,6 +23,9 @@ class MainActivity : AppCompatActivity() {
     val TAG = "MainActivity"
 
     private lateinit var mAuth: FirebaseAuth
+    //firebase
+//    private lateinit var mAuth: FirebaseAuth
+    private lateinit var signInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -128,12 +134,47 @@ class MainActivity : AppCompatActivity() {
 
     private fun login() {
         startActivity(Intent(this, HomeActivity::class.java))
+        saveUserInDB()
     }
 
     override fun onStart() {
         super.onStart()
         if(mAuth.currentUser != null){
             login()
+        }
+    }
+
+    // Save new User
+    private fun saveUserInDB() {
+//        mAuth = Firebase.auth
+
+//        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//            .requestIdToken(getString(R.string.default_web_client_id))
+//            .requestEmail()
+//            .build()
+//        signInClient = GoogleSignIn.getClient(this, gso)
+
+        val userId = ConfigureFirebase.getUserId()
+        val userEmail = ConfigureFirebase.getUserEmail()
+
+        val email = userEmail?.trim { it <= ' ' }
+        val l = email?.indexOf("@")
+        val username = l?.let { email.substring(0, it) }
+
+        val userData = hashMapOf(
+            "email" to userEmail,
+            "name" to username
+        )
+
+        //Collection + Add -> Generate random collection Uid - useful for single book collection
+        if (userId != null) {
+            ConfigureFirebase.getUserDbRef(userId)
+                .get()
+                .addOnSuccessListener { documentSnapshot ->
+                    if (!documentSnapshot.exists()) {
+                        ConfigureFirebase.getUserDbRef(userId).set(userData)
+                    }
+                }
         }
     }
 

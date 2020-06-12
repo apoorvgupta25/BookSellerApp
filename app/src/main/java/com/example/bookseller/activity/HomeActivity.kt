@@ -59,7 +59,14 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState();
         navigationViewHome.setNavigationItemSelectedListener(this);
 
-        saveUserInDB()
+//        saveUserInDB()
+        mAuth = Firebase.auth
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        signInClient = GoogleSignIn.getClient(this, gso)
 
         addBookFAB.setOnClickListener {
             startActivity(Intent(this, RegisterBookActivity::class.java))
