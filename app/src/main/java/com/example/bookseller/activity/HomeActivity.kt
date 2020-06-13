@@ -78,7 +78,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         Handler().postDelayed({
             getAllBooks()
-        },5000)
+        },0)
         setUpRecyclerView()
     }
 

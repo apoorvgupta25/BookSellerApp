@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.bookseller.R
 import com.example.bookseller.helper.ConfigureFirebase
 import com.example.bookseller.model.Book
+import com.google.firebase.firestore.FieldValue
 import com.squareup.picasso.Picasso
 import com.synnapps.carouselview.ImageListener
 import kotlinx.android.synthetic.main.activity_view_book.*
@@ -21,7 +22,6 @@ class ViewBookActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_book)
-
 
         val selectedBook = intent.getSerializableExtra("selectedBook") as? Book
 
@@ -75,6 +75,15 @@ class ViewBookActivity : AppCompatActivity() {
             .show()
     }
 
+    // save book to bookmarks
+    private fun saveToBookmarks(){
+        ConfigureFirebase.getUserDocRef(ConfigureFirebase.getUserId()!!)
+            .update("bookmarks", FieldValue.arrayUnion(intent.getStringExtra("selectedBookUid")!!))
+            .addOnSuccessListener {
+                Toast.makeText(this, "Book Saved to Bookmark", Toast.LENGTH_SHORT).show()
+            }
+    }
+
     // Menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.view_book_menu, menu)
@@ -84,6 +93,8 @@ class ViewBookActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.reportBook)
             reportBook()
+        else if(item.itemId == R.id.bookmark)
+            saveToBookmarks()
         return super.onOptionsItemSelected(item)
     }
 }

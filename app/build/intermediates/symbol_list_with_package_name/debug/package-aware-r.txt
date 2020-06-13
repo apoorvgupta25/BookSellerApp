@@ -1614,11 +1614,14 @@ drawable googleg_standard_color_18
 drawable ic_account
 drawable ic_add
 drawable ic_book
+drawable ic_bookmark
+drawable ic_bookmark_border
 drawable ic_calendar_black_24dp
 drawable ic_clear_black_24dp
-drawable ic_delete
 drawable ic_delete_outline
 drawable ic_edit_black_24dp
+drawable ic_fav
+drawable ic_fav_true
 drawable ic_home
 drawable ic_keyboard_arrow_left_black_24dp
 drawable ic_keyboard_arrow_right_black_24dp
@@ -1765,6 +1768,7 @@ id bookRecyclerView
 id bookSemesterTextView
 id bookSubjectTextView
 id bookTitleTextView
+id bookmark
 id bottom
 id bottom_to_top
 id butt

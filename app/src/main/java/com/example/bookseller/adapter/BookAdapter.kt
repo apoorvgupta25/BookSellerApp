@@ -23,7 +23,6 @@ class BookAdapter(private val booksList: ArrayList<Book>) : RecyclerView.Adapter
     private var listener: OnItemClickListener? = null
 
     public interface OnItemClickListener {
-//        fun onItemClick(bookItem: Book)
         fun onItemClick(position: Int)
     }
 

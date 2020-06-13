@@ -7,4 +7,9 @@
         android:title="Report Book"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/bookmark"
+        android:title="Bookmark"
+        android:icon="@drawable/ic_bookmark_border"
+        app:showAsAction="ifRoom"/>
 </menu>
