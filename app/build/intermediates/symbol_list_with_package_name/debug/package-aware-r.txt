@@ -2181,7 +2181,7 @@ layout activity_profile
 layout activity_register_book
 layout activity_signup
 layout activity_view_book
-layout book_item
+layout book_item_home
 layout book_item_my
 layout custom_dialog
 layout design_bottom_navigation_item

@@ -2180,7 +2180,7 @@ int layout activity_profile 0x7f0d001f
 int layout activity_register_book 0x7f0d0020
 int layout activity_signup 0x7f0d0021
 int layout activity_view_book 0x7f0d0022
-int layout book_item 0x7f0d0023
+int layout book_item_home 0x7f0d0023
 int layout book_item_my 0x7f0d0024
 int layout custom_dialog 0x7f0d0025
 int layout design_bottom_navigation_item 0x7f0d0026

@@ -1,5 +1,6 @@
 package com.example.bookseller.activity
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
-    private val REQUEST_CODE_SIGN_IN = 1
+    val REQUEST_CODE_SIGN_IN = 1
     val TAG = "MainActivity"
 
     //firebase
@@ -31,14 +32,10 @@ class MainActivity : AppCompatActivity() {
         mAuth = ConfigureFirebase.getFirebaseAuth()!!
 
 
-        for (i in 0 until googleSigninButton.childCount) {
-            val v: View = googleSigninButton.getChildAt(i)
-            if (v is TextView) {    //if v is instance of textView
-                v.text = "Continue with Google"
-                v.setPadding(50,0, 0, 0)
-                return
-            }
-        }
+        // Google button text
+        val textView: TextView = googleSigninButton.getChildAt(0) as TextView
+        textView.text = "Continue with Google"
+        textView.setPadding(50,0,0,0)
 
         // Google Sign in
         googleSigninButton.setOnClickListener {
@@ -65,7 +62,7 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(requestCode == REQUEST_CODE_SIGN_IN) {
+        if(requestCode == REQUEST_CODE_SIGN_IN && resultCode == Activity.RESULT_OK) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 val account = task.getResult(ApiException::class.java)!!
@@ -74,7 +71,8 @@ class MainActivity : AppCompatActivity() {
             } catch (e: ApiException) {
                 Log.w(TAG, "Google sign in failed", e)
             }
-        }
+        } else progressBar.visibility = View.GONE       //remove progress bar when back pressed
+
     }
 
     private fun firebaseAuthWithGoogle(idToken: String) {
@@ -84,7 +82,7 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Log.i(TAG, "signInWithCredential:success")
                     login()
-                    progressBar.visibility = View.GONE
+                    progressBar.visibility = View.GONE      //progress bar till logging in
                 } else {
                     Log.i(TAG, "signInWithCredential:failure", task.exception)
                 }

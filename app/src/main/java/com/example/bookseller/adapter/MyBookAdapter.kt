@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bookseller.R
 import com.example.bookseller.model.Book
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.book_item.view.*
+import kotlinx.android.synthetic.main.book_item_my.view.*
 
 
 class MyBookAdapter(private val booksList: ArrayList<Book>) : RecyclerView.Adapter<MyBookAdapter.MyBookViewHolder>() {

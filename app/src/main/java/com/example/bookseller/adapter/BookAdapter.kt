@@ -9,8 +9,7 @@ import com.example.bookseller.R
 import com.example.bookseller.adapter.BookAdapter.BookViewHolder
 import com.example.bookseller.model.Book
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_register_book.view.*
-import kotlinx.android.synthetic.main.book_item.view.*
+import kotlinx.android.synthetic.main.book_item_home.view.*
 
 
 class BookAdapter(private val booksList: ArrayList<Book>) : RecyclerView.Adapter<BookViewHolder>() {
@@ -36,7 +35,7 @@ class BookAdapter(private val booksList: ArrayList<Book>) : RecyclerView.Adapter
 
     //Implementing Adapter Methods
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.book_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.book_item_home, parent, false)
         return BookViewHolder(view)
     }
 
