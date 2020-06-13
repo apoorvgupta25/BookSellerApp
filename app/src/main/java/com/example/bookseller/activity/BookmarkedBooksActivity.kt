@@ -3,6 +3,7 @@ package com.example.bookseller.activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -72,11 +73,11 @@ class BookmarkedBooksActivity : AppCompatActivity(), NavigationView.OnNavigation
                 val position = viewHolder.adapterPosition
 
                 ConfigureFirebase.getUserDocRef()
-                    .update("bookmarks", FieldValue.arrayRemove(bookmarksUidList.removeAt(position)))
+                    .update("bookmarks", FieldValue.arrayRemove(bookmarksUidList[position]))
 
-                bookmarksList.removeAt(position)
                 bookmarksUidList.removeAt(position)
-                bookmarksAdapter.notifyDataSetChanged()
+                bookmarksList.removeAt(position)
+                bookmarksAdapter.notifyItemRemoved(position)
             }
 
             override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {return false}
@@ -91,19 +92,17 @@ class BookmarkedBooksActivity : AppCompatActivity(), NavigationView.OnNavigation
         .get()
         .addOnSuccessListener { documentSnapshot ->
 
-            if(documentSnapshot.exists()){
-                val bookmarks: List<String> = documentSnapshot.get("bookmarks") as List<String>
+            val bookmarks: List<String> = documentSnapshot.get("bookmarks") as List<String>
 
-                bookmarksList.clear()
-                bookmarksUidList.clear()
+            bookmarksList.clear()
+            bookmarksUidList.clear()
 
-                for(bookmark in bookmarks){
+            if(bookmarks.isNotEmpty()) {
+                for (bookmark in bookmarks) {
                     ConfigureFirebase.getBookColRef()
-                        .whereEqualTo(FieldPath.documentId(),bookmark)
-                        .addSnapshotListener(this){querySnapshot,e->
-                            if(e != null) return@addSnapshotListener
-
-                            for (documentSnapshotBook in querySnapshot!!){
+                        .whereEqualTo(FieldPath.documentId(), bookmark)
+                        .addSnapshotListener(this) { querySnapshot, _ ->
+                            for (documentSnapshotBook in querySnapshot!!) {
                                 bookmarksList.add(documentSnapshotBook.toObject(Book::class.java))
                                 bookmarksUidList.add(documentSnapshotBook.id)
                             }
@@ -111,6 +110,10 @@ class BookmarkedBooksActivity : AppCompatActivity(), NavigationView.OnNavigation
                             bookmarksAdapter.isShimmer = false
                         }
                 }
+            }
+            else {
+                bookmarksAdapter.notifyDataSetChanged()
+                bookmarksAdapter.isShimmer = false
             }
         }
     }
