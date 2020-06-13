@@ -76,7 +76,8 @@ class SignupActivity : AppCompatActivity() {
 
         val userData = hashMapOf(
             "email" to userEmail,
-            "name" to username
+            "name" to username,
+            "bookmarks" to arrayListOf<String>()
         )
 
         //Collection + Add -> Generate random collection Uid - useful for single book collection
