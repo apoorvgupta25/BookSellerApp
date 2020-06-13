@@ -15,9 +15,6 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_bookmarked_books.*
-import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.activity_my_books.*
 import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {
@@ -44,10 +41,10 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         //navigation drawer
-        val toggle = ActionBarDrawerToggle(this,drawerLayoutProfile,R.string.open,R.string.close);
-        drawerLayoutProfile.addDrawerListener(toggle);
-        toggle.syncState();
-        navigationViewProfile.setNavigationItemSelectedListener(this);
+        val toggle = ActionBarDrawerToggle(this,drawerLayoutProfile,R.string.open,R.string.close)
+        drawerLayoutProfile.addDrawerListener(toggle)
+        toggle.syncState()
+        navigationViewProfile.setNavigationItemSelectedListener(this)
         navigationViewProfile.setCheckedItem(R.id.profile)
 
     }

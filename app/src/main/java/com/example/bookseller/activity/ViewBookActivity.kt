@@ -77,7 +77,7 @@ class ViewBookActivity : AppCompatActivity() {
 
     // save book to bookmarks
     private fun saveToBookmarks(){
-        ConfigureFirebase.getUserDocRef(ConfigureFirebase.getUserId()!!)
+        ConfigureFirebase.getUserDocRef()
             .update("bookmarks", FieldValue.arrayUnion(intent.getStringExtra("selectedBookUid")!!))
             .addOnSuccessListener {
                 Toast.makeText(this, "Book Saved to Bookmark", Toast.LENGTH_SHORT).show()

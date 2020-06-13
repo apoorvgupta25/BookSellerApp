@@ -17,8 +17,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class SignupActivity : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
-    private lateinit var signInClient: GoogleSignInClient
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,22 +37,20 @@ class SignupActivity : AppCompatActivity() {
             mAuth.createUserWithEmailAndPassword(emailEditText.text.toString(), passwordEditText.text.toString()).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful){
                     login()
-
-                    //ConfigureFirebase.getDatabaseReference()?.child("users")?.child(task.result?.user?.uid.toString())?.child("email")?.setValue(emailEditText.text.toString())
                 }
                 else{
-                    var errorException = ""
+                    val errorException: String
                     try{
-                        throw task.exception!!;
+                        throw task.exception!!
                     } catch (e: FirebaseAuthWeakPasswordException){
-                        errorException = "Enter a stronger password!";
+                        errorException = "Enter a stronger password!"
                     } catch (e: FirebaseAuthInvalidCredentialsException){
-                        errorException = "Please, type a valid email";
+                        errorException = "Please, type a valid email"
                     } catch (e: FirebaseAuthUserCollisionException){
-                        errorException = "This account has already been registered";
+                        errorException = "This account has already been registered"
                     } catch(e: Exception ){
-                        errorException = "when registering user: " + e.message;
-                        e.printStackTrace();
+                        errorException = "when registering user: " + e.message
+                        e.printStackTrace()
                     }
 
                     Toast.makeText(this@SignupActivity, "Error: $errorException", Toast.LENGTH_SHORT).show()
@@ -85,11 +81,11 @@ class SignupActivity : AppCompatActivity() {
 
         //Collection + Add -> Generate random collection Uid - useful for single book collection
         if (userId != null) {
-            ConfigureFirebase.getUserDocRef(userId)
+            ConfigureFirebase.getUserDocRef()
                 .get()
                 .addOnSuccessListener { documentSnapshot ->
                     if (!documentSnapshot.exists()) {
-                        ConfigureFirebase.getUserDocRef(userId).set(userData)
+                        ConfigureFirebase.getUserDocRef().set(userData)
                     }
                 }
         }

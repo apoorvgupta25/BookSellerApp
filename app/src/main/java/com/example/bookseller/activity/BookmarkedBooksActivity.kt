@@ -71,7 +71,7 @@ class BookmarkedBooksActivity : AppCompatActivity(), NavigationView.OnNavigation
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
 
-                ConfigureFirebase.getUserDocRef(ConfigureFirebase.getUserId()!!)
+                ConfigureFirebase.getUserDocRef()
                     .update("bookmarks", FieldValue.arrayRemove(bookmarksUidList.removeAt(position)))
 
                 bookmarksList.removeAt(position)
@@ -87,36 +87,33 @@ class BookmarkedBooksActivity : AppCompatActivity(), NavigationView.OnNavigation
     // getBookmarked Books
     private fun getBookmarkedBooks(){
 
-        ConfigureFirebase.getUserDocRef(ConfigureFirebase.getUserId()!!)
+        ConfigureFirebase.getUserDocRef()
         .get()
         .addOnSuccessListener { documentSnapshot ->
-            val bookmarks: List<String> = documentSnapshot.get("bookmarks") as List<String>
 
-            bookmarksList.clear()
-            bookmarksUidList.clear()
+            if(documentSnapshot.exists()){
+                val bookmarks: List<String> = documentSnapshot.get("bookmarks") as List<String>
+
+                bookmarksList.clear()
+                bookmarksUidList.clear()
 
                 for(bookmark in bookmarks){
-                ConfigureFirebase.getBookColRef()
-                    .whereEqualTo(FieldPath.documentId(),bookmark)
-                    .addSnapshotListener(this){querySnapshot,e->
-                    if(e != null) return@addSnapshotListener
+                    ConfigureFirebase.getBookColRef()
+                        .whereEqualTo(FieldPath.documentId(),bookmark)
+                        .addSnapshotListener(this){querySnapshot,e->
+                            if(e != null) return@addSnapshotListener
 
-                    for (documentSnapshotBook in querySnapshot!!){
-                        bookmarksList.add(documentSnapshotBook.toObject(Book::class.java))
-                        bookmarksUidList.add(documentSnapshotBook.id)
-                    }
-                    bookmarksAdapter.notifyDataSetChanged()
-                    bookmarksAdapter.isShimmer = false
+                            for (documentSnapshotBook in querySnapshot!!){
+                                bookmarksList.add(documentSnapshotBook.toObject(Book::class.java))
+                                bookmarksUidList.add(documentSnapshotBook.id)
+                            }
+                            bookmarksAdapter.notifyDataSetChanged()
+                            bookmarksAdapter.isShimmer = false
+                        }
                 }
             }
         }
     }
-
-    // swipe to delete
-    private fun swipeToDelete(){
-
-    }
-
 
     // set up recycler view
     private fun setUpRecyclerView() {

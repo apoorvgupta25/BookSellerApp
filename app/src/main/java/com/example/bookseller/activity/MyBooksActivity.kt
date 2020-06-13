@@ -22,7 +22,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_bookmarked_books.*
 import kotlinx.android.synthetic.main.activity_my_books.*
 import kotlinx.android.synthetic.main.activity_my_books.navigationViewMy
 
@@ -55,13 +54,13 @@ class MyBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
 
         //toolbar
         setSupportActionBar(toolbarMy)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true);
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         //navigation drawer
-        val toggle = ActionBarDrawerToggle(this,drawerLayoutMy,R.string.open,R.string.close);
-        drawerLayoutMy.addDrawerListener(toggle);
-        toggle.syncState();
-        navigationViewMy.setNavigationItemSelectedListener(this);
+        val toggle = ActionBarDrawerToggle(this,drawerLayoutMy,R.string.open,R.string.close)
+        drawerLayoutMy.addDrawerListener(toggle)
+        toggle.syncState()
+        navigationViewMy.setNavigationItemSelectedListener(this)
         navigationViewMy.setCheckedItem(R.id.myBooksActivity2)
 
 
@@ -78,7 +77,7 @@ class MyBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         ConfigureFirebase.getBookColRef().whereEqualTo("userId",ConfigureFirebase.getUserId())
             .addSnapshotListener(this){querySnapshot,e->
                 if(e != null){
-                    return@addSnapshotListener;
+                    return@addSnapshotListener
                 }
                 myBooksList.clear()
                 myBookUidList.clear()

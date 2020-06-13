@@ -35,8 +35,8 @@ class ConfigureFirebase {
         }
 
         //User db reference
-        fun getUserDocRef(userId: String): DocumentReference {
-            return FirebaseFirestore.getInstance().collection("user").document(userId)
+        fun getUserDocRef(): DocumentReference {
+            return FirebaseFirestore.getInstance().collection("user").document(getUserId()!!)
         }
 
         //Books db reference

@@ -114,12 +114,12 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
         for (i in photoList.indices) {
             val imageUrl = photoList[i]
             val listSize = photoList.size
-            savePhotoStorage(imageUrl, listSize, i)
+            savePhotoStorage(imageUrl, listSize)
         }
     }
 
     //2.4. save photo
-    private fun savePhotoStorage(imageUrl: String, listSize: Int, i: Int) {
+    private fun savePhotoStorage(imageUrl: String, listSize: Int) {
         val userId = ConfigureFirebase.getUserId()!!
 
         val imageBook: StorageReference = storageReference!!
@@ -204,7 +204,7 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Permissions Denied")
         builder.setMessage("Please grant the required permission to use the app")
-        builder.setCancelable(false);
+        builder.setCancelable(false)
         builder.setPositiveButton("Confirm ") { _, _ ->
             finish()
         }

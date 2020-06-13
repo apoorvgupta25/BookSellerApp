@@ -19,8 +19,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
-    val REQUEST_CODE_SIGN_IN = 1
-    val TAG = "MainActivity"
+    private val REQUEST_CODE_SIGN_IN = 1
+    private val TAG = "MainActivity"
 
     //firebase
     private lateinit var mAuth: FirebaseAuth
@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun signupUser(v: View){
+    /*fun signupUser(v: View){
         if (emailEditText?.text.toString() == "" || passwordEditText?.text.toString() == "") {
             Toast.makeText(applicationContext, "Email or Password is empty", Toast.LENGTH_SHORT).show()
         } else {
@@ -110,7 +110,7 @@ class MainActivity : AppCompatActivity() {
                     login()
                 }
                 else{
-                    var errorException = ""
+                    val errorException: String
                     try{
                         throw task.exception!!
                     } catch (e: FirebaseAuthWeakPasswordException){
@@ -128,7 +128,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
+    }*/
 
 
     fun moveToSignUp(v: View){
@@ -164,11 +164,11 @@ class MainActivity : AppCompatActivity() {
 
         //Collection + Add -> Generate random collection Uid - useful for single book collection
         if (userId != null) {
-            ConfigureFirebase.getUserDocRef(userId)
+            ConfigureFirebase.getUserDocRef()
                 .get()
                 .addOnSuccessListener { documentSnapshot ->
                     if (!documentSnapshot.exists()) {
-                        ConfigureFirebase.getUserDocRef(userId).set(userData)
+                        ConfigureFirebase.getUserDocRef().set(userData)
                     }
                 }
         }
