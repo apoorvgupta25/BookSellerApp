@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bookseller.R
@@ -15,14 +16,13 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.*
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : AppCompatActivity() {
-    val REQUEST_CODE_SIGN_IN = 1
+    private val REQUEST_CODE_SIGN_IN = 1
     val TAG = "MainActivity"
 
-    private lateinit var mAuth: FirebaseAuth
     //firebase
-//    private lateinit var mAuth: FirebaseAuth
-    private lateinit var signInClient: GoogleSignInClient
+    private lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +30,19 @@ class MainActivity : AppCompatActivity() {
 
         mAuth = ConfigureFirebase.getFirebaseAuth()!!
 
+
+        for (i in 0 until googleSigninButton.childCount) {
+            val v: View = googleSigninButton.getChildAt(i)
+            if (v is TextView) {    //if v is instance of textView
+                v.text = "Continue with Google"
+                v.setPadding(50,0, 0, 0)
+                return
+            }
+        }
+
         // Google Sign in
         googleSigninButton.setOnClickListener {
+            progressBar.visibility = View.VISIBLE
             // Configure Google Sign In
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -73,6 +84,7 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Log.i(TAG, "signInWithCredential:success")
                     login()
+                    progressBar.visibility = View.GONE
                 } else {
                     Log.i(TAG, "signInWithCredential:failure", task.exception)
                 }
@@ -86,16 +98,14 @@ class MainActivity : AppCompatActivity() {
             mAuth.signInWithEmailAndPassword(emailEditText.text.toString(), passwordEditText.text.toString()).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful)
                     login()
-                else
-                    Toast.makeText(applicationContext, "Unable To Login ", Toast.LENGTH_SHORT).show()
+                else Toast.makeText(applicationContext, "Unable To Login ", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
     fun signupUser(v: View){
         if (emailEditText?.text.toString() == "" || passwordEditText?.text.toString() == "") {
-            Toast.makeText(applicationContext, "Email or Password is empty", Toast.LENGTH_SHORT)
-                .show()
+            Toast.makeText(applicationContext, "Email or Password is empty", Toast.LENGTH_SHORT).show()
         } else {
             mAuth.createUserWithEmailAndPassword(emailEditText.text.toString(), passwordEditText.text.toString()).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful){
@@ -104,16 +114,16 @@ class MainActivity : AppCompatActivity() {
                 else{
                     var errorException = ""
                     try{
-                        throw task.exception!!;
+                        throw task.exception!!
                     } catch (e: FirebaseAuthWeakPasswordException){
-                        errorException = "Enter a stronger password!";
+                        errorException = "Enter a stronger password!"
                     } catch (e: FirebaseAuthInvalidCredentialsException){
-                        errorException = "Please, type a valid email";
+                        errorException = "Please, type a valid email"
                     } catch (e: FirebaseAuthUserCollisionException){
-                        errorException = "This account has already been registered";
+                        errorException = "This account has already been registered"
                     } catch(e: Exception ){
-                        errorException = "when registering user: " + e.message;
-                        e.printStackTrace();
+                        errorException = "when registering user: " + e.message
+                        e.printStackTrace()
                     }
 
                     Toast.makeText(this@MainActivity, "Error: $errorException", Toast.LENGTH_SHORT).show()

@@ -1944,6 +1944,7 @@ id pin
 id postButton
 id priceEditText
 id profile
+id progressBar
 id progress_circular
 id progress_horizontal
 id radial
