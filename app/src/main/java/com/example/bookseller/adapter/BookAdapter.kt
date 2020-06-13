@@ -64,13 +64,6 @@ class BookAdapter(private val booksList: ArrayList<Book>) : RecyclerView.Adapter
             Picasso.get().load(urlCover).into(holder.imageView);
         }
 
-//        holder.itemView.setOnClickListener {
-//            if(listener != null){
-//                val position = getAdapterPosition()
-//            }
-//        }
-
-
         //In One Line //todo: Example of apply
 //        holder.itemView.apply {
 //            titleTextView.text = "Book @"
@@ -88,9 +81,6 @@ class BookAdapter(private val booksList: ArrayList<Book>) : RecyclerView.Adapter
 
         var imageView: ImageView = itemView.findViewById(R.id.imageView)
         init {
-//            imageView =
-
-
             itemView.setOnClickListener {
                 if(listener != null){
                     val position = adapterPosition

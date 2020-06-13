@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
-    tools:context=".activity.RegisterBookActivity">
+    tools:context=".activity.RegisterBookActivity"
+    tools:ignore="contentDescription">
 
     <LinearLayout
         android:id="@+id/imageLinearLayout"

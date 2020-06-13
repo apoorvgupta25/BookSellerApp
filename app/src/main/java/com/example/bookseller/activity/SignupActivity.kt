@@ -1,6 +1,5 @@
 package com.example.bookseller.activity
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,15 +7,11 @@ import android.view.View
 import android.widget.Toast
 import com.example.bookseller.R
 import com.example.bookseller.helper.ConfigureFirebase
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 
 class SignupActivity : AppCompatActivity() {
@@ -75,13 +70,6 @@ class SignupActivity : AppCompatActivity() {
 
     // Save new User
     private fun saveUserInDB() {
-//        mAuth = Firebase.auth
-//
-//        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//            .requestIdToken(getString(R.string.default_web_client_id))
-//            .requestEmail()
-//            .build()
-//        signInClient = GoogleSignIn.getClient(this, gso)
 
         val userId = ConfigureFirebase.getUserId()
         val userEmail = ConfigureFirebase.getUserEmail()
@@ -97,11 +85,11 @@ class SignupActivity : AppCompatActivity() {
 
         //Collection + Add -> Generate random collection Uid - useful for single book collection
         if (userId != null) {
-            ConfigureFirebase.getUserDbRef(userId)
+            ConfigureFirebase.getUserDocRef(userId)
                 .get()
                 .addOnSuccessListener { documentSnapshot ->
                     if (!documentSnapshot.exists()) {
-                        ConfigureFirebase.getUserDbRef(userId).set(userData)
+                        ConfigureFirebase.getUserDocRef(userId).set(userData)
                     }
                 }
         }

@@ -24,7 +24,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_home.toolbarHome
@@ -39,13 +38,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     //firebase
     private lateinit var mAuth: FirebaseAuth
     private lateinit var signInClient: GoogleSignInClient
-    private val db = FirebaseFirestore.getInstance().collection("user")
 
     private var dialogHomeActivity: AlertDialog? = null
 
     private var selectedSemester = "Semester"
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +58,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationViewHome.setNavigationItemSelectedListener(this);
         navigationViewHome.setCheckedItem(R.id.homeActivity2)
 
-//        saveUserInDB()
         mAuth = Firebase.auth
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -116,7 +111,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         dialogHomeActivity!!.show()
     }
 
-    // filter semester wise
+    // filter subject wise
     fun filterSubjectwise(view: View){
         if(selectedSemester != "Semester"){
             val dialogSubject = AlertDialog.Builder(this)
@@ -160,13 +155,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // get all books
     private fun getAllBooks(){
-//        dialogHomeActivity = SpotsDialog.Builder()
-//            .setContext(this)
-//            .setMessage("Getting Books")
-//            .setCancelable(false)
-//            .build()
-//        dialogHomeActivity!!.show()
-
 
         // Sub-Collection Query
         /*db.addSnapshotListener(this) { querySnapshot, e ->
@@ -191,7 +179,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
          */
 
         //Top-Level Collection Query
-        ConfigureFirebase.getBookDbRef()
+        ConfigureFirebase.getBookColRef()
             .addSnapshotListener(this){querySnapshot,e->
                 if(e != null){
                     return@addSnapshotListener;
@@ -204,20 +192,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
                 bookAdapter.notifyDataSetChanged()
                 bookAdapter.isShimmer = false
-//                dialogHomeActivity!!.dismiss()
             }
     }
 
     // get books by semester
     private fun getBooksBySemester(selectedSemester: String){
-//        dialogHomeActivity = SpotsDialog.Builder()
-//            .setContext(this)
-//            .setMessage("Getting Books By Semster")
-//            .setCancelable(false)
-//            .build()
-//        dialogHomeActivity!!.show()
 
-        ConfigureFirebase.getBookDbRef()
+        ConfigureFirebase.getBookColRef()
             .whereEqualTo("semester",selectedSemester)
             .addSnapshotListener(this){querySnapshot,e->
                 if(e != null){
@@ -231,20 +212,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
                 bookAdapter.notifyDataSetChanged()
                 bookAdapter.isShimmer = false
-//                dialogHomeActivity!!.dismiss()
             }
     }
 
     // get book by subject
     private fun getBooksBySubject(selectedSubject: String, selectedSemester: String){
-//        dialogHomeActivity = SpotsDialog.Builder()
-//            .setContext(this)
-//            .setMessage("Getting Books By Subject")
-//            .setCancelable(false)
-//            .build()
-//        dialogHomeActivity!!.show()
 
-        ConfigureFirebase.getBookDbRef()
+        ConfigureFirebase.getBookColRef()
             .whereEqualTo("subject",selectedSubject)
             .addSnapshotListener(this){querySnapshot,e->
                 if(e != null){
@@ -261,44 +235,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
                 bookAdapter.notifyDataSetChanged()
                 bookAdapter.isShimmer = false
-//                dialogHomeActivity!!.dismiss()
             }
-    }
-
-
-
-    // Save new User
-    private fun saveUserInDB() {
-        mAuth = Firebase.auth
-
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-        signInClient = GoogleSignIn.getClient(this, gso)
-
-        val userId = ConfigureFirebase.getUserId()
-        val userEmail = ConfigureFirebase.getUserEmail()
-
-        val email = userEmail?.trim { it <= ' ' }
-        val l = email?.indexOf("@")
-        val username = l?.let { email.substring(0, it) }
-
-        val userData = hashMapOf(
-            "email" to userEmail,
-            "name" to username
-        )
-
-        //Collection + Add -> Generate random collection Uid - useful for single book collection
-        if (userId != null) {
-            ConfigureFirebase.getUserDbRef(userId)
-                .get()
-                .addOnSuccessListener { documentSnapshot ->
-                    if (!documentSnapshot.exists()) {
-                        ConfigureFirebase.getUserDbRef(userId).set(userData)
-                    }
-                }
-        }
     }
 
     // set up recycler view

@@ -45,7 +45,7 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
 //        photoList =
 //        photoUrlList = ArrayList()
 
-        Permissions.validatePermssion(permission, this, 1)
+        Permissions.validatePermission(permission, this, 1)
 
         loadSpinnerData()
 
@@ -137,7 +137,7 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
 
                 if (listSize == photoUrlList.size) {
                     book!!.setPhoto(photoUrlList)
-                    ConfigureFirebase.getBookDbRef().add(book!!).addOnCompleteListener {
+                    ConfigureFirebase.getBookColRef().add(book!!).addOnCompleteListener {
                         dialog!!.dismiss()
                         finish()
                     }

@@ -35,12 +35,12 @@ class ConfigureFirebase {
         }
 
         //User db reference
-        fun getUserDbRef(userId: String): DocumentReference {
+        fun getUserDocRef(userId: String): DocumentReference {
             return FirebaseFirestore.getInstance().collection("user").document(userId)
         }
 
         //Books db reference
-        fun getBookDbRef(): CollectionReference{
+        fun getBookColRef(): CollectionReference{
             return FirebaseFirestore.getInstance().collection("books")
         }
 

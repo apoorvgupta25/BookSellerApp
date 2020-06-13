@@ -21,9 +21,7 @@ class MyBookAdapter(private val booksList: ArrayList<Book>) : RecyclerView.Adapt
     //interface and custom Click
     private var listener: OnItemClickListener? = null
 
-    public interface OnItemClickListener {
-//        fun onItemClick(bookItem: Book)
-//        fun onItemClick(position: Int)
+    interface OnItemClickListener {
         fun onDeleteClick(position: Int)
         fun onReportClick(position: Int)
     }
@@ -67,13 +65,6 @@ class MyBookAdapter(private val booksList: ArrayList<Book>) : RecyclerView.Adapt
             Picasso.get().load(urlCover).into(holder.imageView);
         }
 
-//        holder.itemView.setOnClickListener {
-//            if(listener != null){
-//                val position = getAdapterPosition()
-//            }
-//        }
-
-
         //In One Line //todo: Example of apply
 //        holder.itemView.apply {
 //            titleTextView.text = "Book @"
@@ -93,18 +84,6 @@ class MyBookAdapter(private val booksList: ArrayList<Book>) : RecyclerView.Adapt
         var deleteImageView: ImageView = itemView.findViewById(R.id.deleteImageView)
         var reportImageView: ImageView = itemView.findViewById(R.id.reportImageView)
         init {
-//            deleteImageView = itemView.findViewById(R.id.deleteImageView)
-//            reportImageView = itemView.findViewById(R.id.reportImageView)
-
-            //on Item Click
-//            itemView.setOnClickListener {
-//                if(listener != null){
-//                    val position = adapterPosition
-//                    if (position != RecyclerView.NO_POSITION) {
-//                        listener!!.onItemClick(position)
-//                    }
-//                }
-//            }
 
             //on Delete Click
             deleteImageView.setOnClickListener {

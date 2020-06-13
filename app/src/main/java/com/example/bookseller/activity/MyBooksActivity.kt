@@ -10,7 +10,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookseller.R
-import com.example.bookseller.adapter.BookAdapter
 import com.example.bookseller.adapter.MyBookAdapter
 import com.example.bookseller.helper.ConfigureFirebase
 import com.example.bookseller.model.Book
@@ -22,11 +21,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import dmax.dialog.SpotsDialog
-import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_my_books.*
 import kotlinx.android.synthetic.main.activity_my_books.navigationViewMy
-import kotlinx.android.synthetic.main.activity_profile.*
 
 class MyBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -78,15 +74,8 @@ class MyBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
     override fun onStart() {
         super.onStart()
 
-//        dialog = SpotsDialog.Builder()
-//            .setContext(this)
-//            .setMessage("Getting your Books")
-//            .setCancelable(false)
-//            .build()
-//        dialog!!.show()
-
 //        ConfigureFirebase.getUserDbRef(ConfigureFirebase.getUserId()!!).collection("books")       //Sub-collection Query
-        ConfigureFirebase.getBookDbRef().whereEqualTo("userId",ConfigureFirebase.getUserId())
+        ConfigureFirebase.getBookColRef().whereEqualTo("userId",ConfigureFirebase.getUserId())
             .addSnapshotListener(this){querySnapshot,e->
                 if(e != null){
                     return@addSnapshotListener;
@@ -99,7 +88,6 @@ class MyBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
                 }
                 myBooksAdapter.isShimmer = false
                 myBooksAdapter.notifyDataSetChanged()
-//                dialog!!.dismiss()
             }
     }
 
@@ -154,7 +142,7 @@ class MyBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
 
     //delete
     private fun deleteBook(position: Int){
-        ConfigureFirebase.getBookDbRef().document(myBookUidList[position]).delete()
+        ConfigureFirebase.getBookColRef().document(myBookUidList[position]).delete()
         myBookUidList.removeAt(position)
         myBooksList.removeAt(position)
         myBooksAdapter.notifyDataSetChanged()

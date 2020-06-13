@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 class Permissions {
 
     companion object{
-        public fun validatePermssion(permissions: Array<String>, activity: Activity, requestCode: Int ): Boolean {
+        fun validatePermission(permissions: Array<String>, activity: Activity, requestCode: Int ): Boolean {
 
             if(Build.VERSION.SDK_INT >= 26){
                 val permissionList: MutableList<String> = ArrayList()
@@ -23,13 +23,10 @@ class Permissions {
                 if (permissionList.isNullOrEmpty())
                     return true
 
-
                 val newPermissions: Array<String> = permissionList.toTypedArray()
 
                 ActivityCompat.requestPermissions(activity, newPermissions, requestCode)
-
             }
-
             return true
         }
     }
