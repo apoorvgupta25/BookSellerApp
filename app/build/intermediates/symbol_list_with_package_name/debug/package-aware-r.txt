@@ -1620,8 +1620,6 @@ drawable ic_calendar_black_24dp
 drawable ic_clear_black_24dp
 drawable ic_delete_outline
 drawable ic_edit_black_24dp
-drawable ic_fav
-drawable ic_fav_true
 drawable ic_home
 drawable ic_keyboard_arrow_left_black_24dp
 drawable ic_keyboard_arrow_right_black_24dp
@@ -1769,6 +1767,8 @@ id bookSemesterTextView
 id bookSubjectTextView
 id bookTitleTextView
 id bookmark
+id bookmarksActivity
+id bookmarksRecyclerView
 id bottom
 id bottom_to_top
 id butt
@@ -1817,6 +1817,7 @@ id direct
 id disableHome
 id dmax_spots_progress
 id dmax_spots_title
+id drawerLayoutBookmarks
 id drawerLayoutHome
 id drawerLayoutMy
 id drawerLayoutProfile
@@ -1919,6 +1920,7 @@ id myBooksActivity2
 id myBooksRecyclerView
 id nav_controller_view_tag
 id nav_host_fragment_container
+id navigationViewBookmark
 id navigationViewHome
 id navigationViewMy
 id navigationViewProfile
@@ -2050,6 +2052,7 @@ id title
 id titleDividerNoCustom
 id titleEditText
 id title_template
+id toolbarBookmark
 id toolbarHome
 id toolbarMy
 id toolbarProfile
@@ -2178,6 +2181,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_bookmarked_books
 layout activity_home
 layout activity_main
 layout activity_my_books

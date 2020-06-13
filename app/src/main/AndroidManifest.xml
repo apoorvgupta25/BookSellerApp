@@ -13,7 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.ViewBookActivity"/>
+        <activity
+            android:name=".activity.BookmarkedBooksActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.ViewBookActivity" />
         <activity
             android:name=".activity.ProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />

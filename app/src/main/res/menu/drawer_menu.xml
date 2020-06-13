@@ -10,6 +10,11 @@
             android:id="@+id/myBooksActivity2"
             android:icon="@drawable/ic_book"
             android:title="My Books" />
+
+        <item
+            android:id="@+id/bookmarksActivity"
+            android:icon="@drawable/ic_bookmark"
+            android:title="Bookmarked Books"/>
     </group>
 
     <item android:title="Account">

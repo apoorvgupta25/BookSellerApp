@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -21,6 +22,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_bookmarked_books.*
 import kotlinx.android.synthetic.main.activity_my_books.*
 import kotlinx.android.synthetic.main.activity_my_books.navigationViewMy
 
@@ -30,8 +32,6 @@ class MyBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
     private var myBooksList: ArrayList<Book> = ArrayList()
     private var myBookUidList: ArrayList<String> = ArrayList()
     private lateinit var myBooksAdapter: MyBookAdapter
-
-    private var dialog: AlertDialog? = null
 
     //firebase
     private lateinit var mAuth: FirebaseAuth
@@ -119,25 +119,17 @@ class MyBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
 
     // Navigation Drawer
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId){
-            R.id.homeActivity2 -> {
-                startActivity(Intent(this, HomeActivity::class.java))
-                true
+        Handler().postDelayed({
+            when (item.itemId){
+                R.id.homeActivity2 -> startActivity(Intent(this, HomeActivity::class.java))
+                R.id.myBooksActivity2 -> {}
+                R.id.logout -> logout()
+                R.id.profile -> startActivity(Intent(this, ProfileActivity::class.java))
+                R.id.bookmarksActivity -> startActivity(Intent(this, BookmarkedBooksActivity::class.java))
             }
-            R.id.myBooksActivity2 ->{
-                drawerLayoutMy.closeDrawers()
-                true
-            }
-            R.id.logout -> {
-                logout()
-                true
-            }
-            R.id.profile -> {
-                startActivity(Intent(this, ProfileActivity::class.java))
-                true
-            }
-            else -> false
-        }
+        },200)
+        drawerLayoutMy.closeDrawer(GravityCompat.START)
+        return true
     }
 
     //delete

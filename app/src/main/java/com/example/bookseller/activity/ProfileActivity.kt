@@ -3,6 +3,7 @@ package com.example.bookseller.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -14,6 +15,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_bookmarked_books.*
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_my_books.*
 import kotlinx.android.synthetic.main.activity_profile.*
@@ -39,7 +41,7 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
 
         //toolbar
         setSupportActionBar(toolbarProfile)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true);
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         //navigation drawer
         val toggle = ActionBarDrawerToggle(this,drawerLayoutProfile,R.string.open,R.string.close);
@@ -52,25 +54,17 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
 
     // Navigation Drawer
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId){
-            R.id.homeActivity2 -> {
-                startActivity(Intent(this, HomeActivity::class.java))
-                true
+        Handler().postDelayed({
+            when (item.itemId){
+                R.id.homeActivity2 -> startActivity(Intent(this, HomeActivity::class.java))
+                R.id.myBooksActivity2 -> startActivity(Intent(this, MyBooksActivity::class.java))
+                R.id.logout -> logout()
+                R.id.profile -> {}
+                R.id.bookmarksActivity -> startActivity(Intent(this, BookmarkedBooksActivity::class.java))
             }
-            R.id.myBooksActivity2 ->{
-                startActivity(Intent(this, MyBooksActivity::class.java))
-                true
-            }
-            R.id.logout -> {
-                logout()
-                true
-            }
-            R.id.profile -> {
-                drawerLayoutProfile.closeDrawers()
-                true
-            }
-            else -> false
-        }
+        },200)
+        drawerLayoutProfile.closeDrawer(GravityCompat.START)
+        return true
     }
 
     // logout

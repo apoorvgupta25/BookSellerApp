@@ -25,6 +25,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_bookmarked_books.*
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_home.toolbarHome
 
@@ -259,27 +260,17 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // Navigation Drawer
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId){
-            R.id.homeActivity2 -> {
-                drawerLayoutHome.closeDrawers()
-                true
+        Handler().postDelayed({
+            when (item.itemId){
+                R.id.homeActivity2 -> {}
+                R.id.myBooksActivity2 -> startActivity(Intent(this, MyBooksActivity::class.java))
+                R.id.logout -> logout()
+                R.id.profile -> startActivity(Intent(this, ProfileActivity::class.java))
+                R.id.bookmarksActivity -> startActivity(Intent(this, BookmarkedBooksActivity::class.java))
             }
-            R.id.myBooksActivity2 ->{
-                startActivity(Intent(this, MyBooksActivity::class.java))
-                drawerLayoutHome.closeDrawer(GravityCompat.START)
-                true
-            }
-            R.id.logout -> {
-                logout()
-                true
-            }
-            R.id.profile -> {
-                startActivity(Intent(this, ProfileActivity::class.java))
-                drawerLayoutHome.closeDrawers()
-                true
-            }
-            else -> false
-        }
+        },200)
+        drawerLayoutHome.closeDrawer(GravityCompat.START)
+        return true
     }
 
     private fun logout(){

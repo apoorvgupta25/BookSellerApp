@@ -27,6 +27,9 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.example.bookseller.activity.BookmarkedBooksActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="com.example.bookseller.activity.ViewBookActivity" />
         <activity
             android:name="com.example.bookseller.activity.ProfileActivity"
