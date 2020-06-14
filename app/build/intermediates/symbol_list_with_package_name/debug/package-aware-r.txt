@@ -1978,7 +1978,6 @@ id right_side
 id right_to_left
 id round
 id rounded
-id saveButton
 id save_non_transition_alpha
 id save_overlay_view
 id scale

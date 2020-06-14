@@ -111,7 +111,7 @@ class MyBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
             }
 
             override fun onReportClick(position: Int) {
-                Toast.makeText(this@MyBooksActivity, "This has been Reported", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MyBooksActivity, "This book has been Reported", Toast.LENGTH_SHORT).show()
             }
         })
     }

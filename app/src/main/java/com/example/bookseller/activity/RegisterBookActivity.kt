@@ -17,9 +17,16 @@ import com.example.bookseller.R
 import com.example.bookseller.helper.ConfigureFirebase
 import com.example.bookseller.helper.Permissions
 import com.example.bookseller.model.Book
+import com.google.firebase.firestore.Source
 import com.google.firebase.storage.StorageReference
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_register_book.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.tasks.await
+import okhttp3.Dispatcher
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -49,6 +56,14 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
 
         loadSpinnerData()
 
+
+            val source = Source.CACHE
+            ConfigureFirebase.getUserDocRef().get(source)
+                .addOnSuccessListener {documentSnapshot->
+                if(documentSnapshot.get("phone") != null)
+                    phoneNumberEditText.setText(documentSnapshot.get("phone").toString())
+            }
+
         storageReference = ConfigureFirebase.getStorageReference()
 
 
@@ -70,6 +85,8 @@ class RegisterBookActivity : AppCompatActivity(), View.OnClickListener {
                             if (book!!.description!!.isNotEmpty()) {
                                 if (book!!.title!!.isNotEmpty()) {
                                     saveBook()
+                                    //saving phone number in users doc
+                                    ConfigureFirebase.getUserDocRef().update("phone",book!!.phone)
                                 } else showToastMsg("Fill Title")
                             } else showToastMsg("Fill Description")
                         } else showToastMsg("Fill Phone number field")

@@ -5,17 +5,26 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import com.example.bookseller.R
+import com.example.bookseller.helper.ConfigureFirebase
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.Source
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {
 
@@ -50,6 +59,33 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         navigationViewProfile.setNavigationItemSelectedListener(this)
         navigationViewProfile.setCheckedItem(R.id.profile)
 
+
+        val source = Source.CACHE                       //storing data in cache, and getting data from the cache
+        ConfigureFirebase.getUserDocRef().get(source).addOnSuccessListener {documentSnapshot ->
+            if(documentSnapshot.exists()){
+                val name = documentSnapshot.get("name").toString()
+                val email = documentSnapshot.get("email").toString()
+                val number = documentSnapshot.get("phone").toString()
+
+                nameEditText.setText(name)
+                emailEditText.setText(email)
+                phoneEditText.setText(number)
+            }
+        }
+
+//        todo: using coroutine with firebase
+//        GlobalScope.launch(Dispatchers.IO) {
+//            val documentSnapshot = ConfigureFirebase.getUserDocRef().get().await()
+//
+//            val name = documentSnapshot.get("name").toString()
+//            val email = documentSnapshot.get("email").toString()
+//
+//            withContext(Dispatchers.Main){
+//                nameEditText.setText(name)
+//                emailEditText.setText(email)
+//            }
+//        }
+
         editSaveProfileTextView.setOnClickListener {
             if(!isEditing) {
                 isEditing = true
@@ -58,7 +94,7 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
                 val pos = nameEditText.text.length
                 nameEditText.isFocusableInTouchMode = true
                 nameEditText.setSelection(pos)
-                val pos2 = phoneEditText.text.length
+                val pos2 = phoneEditText.text!!.length
                 phoneEditText.isFocusableInTouchMode = true
                 phoneEditText.setSelection(pos2)
 
@@ -69,10 +105,27 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
                 nameEditText.isFocusable = false
                 phoneEditText.isFocusable = false
 
-                //Save Details in firebase
+                saveInfo()
             }
         }
 
+    }
+    
+    //save user info
+    fun saveInfo(){
+        val updatedName = nameEditText.text.toString()
+        val updatedNumber = phoneEditText.text.toString()
+
+        val updateMap = hashMapOf(
+            "name" to updatedName,
+            "phone" to updatedNumber
+        )
+
+        ConfigureFirebase.getUserDocRef()
+            .update(updateMap as Map<String, Any>)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Info Updated", Toast.LENGTH_SHORT).show()
+            }
     }
 
     // Navigation Drawer

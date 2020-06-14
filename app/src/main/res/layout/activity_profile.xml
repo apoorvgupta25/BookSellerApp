@@ -49,7 +49,7 @@
             android:background="@android:color/transparent"
             android:inputType="textPersonName"
             android:padding="3dp"
-            android:text="Name"
+            android:hint="Name"
             android:focusable="false"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/nameTextView"
@@ -114,7 +114,7 @@
             app:layout_constraintVertical_bias="0.1" />
 
 
-        <EditText
+        <com.santalu.maskedittext.MaskEditText
             android:id="@+id/phoneEditText"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
@@ -122,7 +122,7 @@
             android:background="@android:color/transparent"
             android:inputType="phone"
             android:padding="3dp"
-            android:text="0123456789"
+            android:hint="+91"
             android:focusable="false"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/phoneTextView"
@@ -130,7 +130,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/phoneTextView"
             app:layout_constraintTop_toTopOf="@+id/phoneTextView"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            app:met_mask="+90(###) ### ## ##"/>
 
         <TextView
             android:id="@+id/emailTextView"
@@ -158,7 +159,7 @@
             android:focusable="false"
             android:inputType="textEmailAddress"
             android:padding="3dp"
-            android:text="apoorv.gupta@somaiya.edu"
+            android:hint="apoorv.gupta@gmail.com"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/emailTextView"
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
@@ -204,17 +205,6 @@
             android:text="Edit Profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
-
-        <Button
-            android:id="@+id/saveButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Save"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline5"
-            app:layout_constraintStart_toStartOf="@+id/guideline8"
-            app:layout_constraintTop_toBottomOf="@+id/view5" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
