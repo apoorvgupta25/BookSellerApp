@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -20,6 +21,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.Source
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.nav_drawer.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -70,6 +72,12 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
                 nameEditText.setText(name)
                 emailEditText.setText(email)
                 phoneEditText.setText(number)
+
+
+                // for nav header only
+                val viewProfile = navigationViewProfile.getHeaderView(0)
+                val textView = viewProfile.findViewById<TextView>(R.id.navDrawerName)
+                textView.setText(name)
             }
         }
 
@@ -112,7 +120,7 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
     }
     
     //save user info
-    fun saveInfo(){
+    private fun saveInfo(){
         val updatedName = nameEditText.text.toString()
         val updatedNumber = phoneEditText.text.toString()
 

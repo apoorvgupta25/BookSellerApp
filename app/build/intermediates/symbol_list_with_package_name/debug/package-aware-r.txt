@@ -1929,6 +1929,7 @@ id myBooksActivity2
 id myBooksRecyclerView
 id nameEditText
 id nameTextView
+id navDrawerName
 id nav_controller_view_tag
 id nav_host_fragment_container
 id navigationViewBookmark

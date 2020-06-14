@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -23,8 +24,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.Source
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_bookmarked_books.*
+import kotlinx.android.synthetic.main.activity_home.*
 
 class BookmarkedBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -61,6 +64,14 @@ class BookmarkedBooksActivity : AppCompatActivity(), NavigationView.OnNavigation
         toggle.syncState()
         navigationViewBookmark.setNavigationItemSelectedListener(this)
         navigationViewBookmark.setCheckedItem(R.id.bookmarksActivity)
+
+        //Drawer header
+        val source = Source.CACHE
+        ConfigureFirebase.getUserDocRef().get(source).addOnSuccessListener { documentSnapshot ->
+            val viewHome = navigationViewBookmark.getHeaderView(0)
+            val textView = viewHome.findViewById<TextView>(R.id.navDrawerName)
+            textView.text = documentSnapshot.get("name").toString()
+        }
 
         getBookmarkedBooks()
 

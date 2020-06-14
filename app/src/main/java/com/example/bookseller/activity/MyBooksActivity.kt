@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -21,9 +22,12 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.Source
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_my_books.*
 import kotlinx.android.synthetic.main.activity_my_books.navigationViewMy
+import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.nav_drawer.*
 
 class MyBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -64,7 +68,13 @@ class MyBooksActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         navigationViewMy.setCheckedItem(R.id.myBooksActivity2)
 
 
-
+        //Drawer header
+        val source = Source.CACHE
+        ConfigureFirebase.getUserDocRef().get(source).addOnSuccessListener { documentSnapshot ->
+            val viewMyBooks = navigationViewMy.getHeaderView(0)
+            val textView = viewMyBooks.findViewById<TextView>(R.id.navDrawerName)
+            textView.text = documentSnapshot.get("name").toString()
+        }
 
         setUpRecyclerView()
 
