@@ -1619,8 +1619,11 @@ drawable ic_bookmark_border
 drawable ic_calendar_black_24dp
 drawable ic_clear_black_24dp
 drawable ic_delete_outline
+drawable ic_edit
 drawable ic_edit_black_24dp
+drawable ic_email
 drawable ic_home
+drawable ic_identity
 drawable ic_keyboard_arrow_left_black_24dp
 drawable ic_keyboard_arrow_right_black_24dp
 drawable ic_launcher_background
@@ -1632,6 +1635,7 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_phone
 drawable mtrl_dialog_background
 drawable mtrl_dropdown_arrow
 drawable mtrl_ic_arrow_drop_down
@@ -1822,9 +1826,11 @@ id drawerLayoutHome
 id drawerLayoutMy
 id drawerLayoutProfile
 id dropdown_menu
+id editSaveProfileTextView
 id edit_query
 id emailEditText
 id emailEditText1
+id emailTextView
 id end
 id enterAlways
 id enterAlwaysCollapsed
@@ -1853,6 +1859,8 @@ id guideline1
 id guideline2
 id guideline3
 id guideline4
+id guideline5
+id guideline8
 id height
 id hideable
 id home
@@ -1866,6 +1874,7 @@ id ifRoom
 id image
 id imageLinearLayout
 id imageView
+id imageView2
 id indicator
 id info
 id invisible
@@ -1918,6 +1927,8 @@ id multiPage
 id multiply
 id myBooksActivity2
 id myBooksRecyclerView
+id nameEditText
+id nameTextView
 id nav_controller_view_tag
 id nav_host_fragment_container
 id navigationViewBookmark
@@ -1945,7 +1956,9 @@ id passwordEditText1
 id password_toggle
 id peekHeight
 id percent
+id phoneEditText
 id phoneNumberEditText
+id phoneTextView
 id pin
 id postButton
 id priceEditText
@@ -1965,6 +1978,7 @@ id right_side
 id right_to_left
 id round
 id rounded
+id saveButton
 id save_non_transition_alpha
 id save_overlay_view
 id scale
@@ -2073,6 +2087,8 @@ id vertical
 id view
 id view2
 id view3
+id view4
+id view5
 id view_offset_helper
 id visible
 id visible_removing_fragment_view_tag

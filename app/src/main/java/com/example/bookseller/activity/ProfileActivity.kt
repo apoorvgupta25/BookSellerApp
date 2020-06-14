@@ -23,6 +23,9 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
     private lateinit var mAuth: FirebaseAuth
     private lateinit var signInClient: GoogleSignInClient
 
+    //edit profile
+    private var isEditing = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
@@ -46,6 +49,29 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         toggle.syncState()
         navigationViewProfile.setNavigationItemSelectedListener(this)
         navigationViewProfile.setCheckedItem(R.id.profile)
+
+        editSaveProfileTextView.setOnClickListener {
+            if(!isEditing) {
+                isEditing = true
+                editSaveProfileTextView.text = "Save Edits"
+
+                val pos = nameEditText.text.length
+                nameEditText.isFocusableInTouchMode = true
+                nameEditText.setSelection(pos)
+                val pos2 = phoneEditText.text.length
+                phoneEditText.isFocusableInTouchMode = true
+                phoneEditText.setSelection(pos2)
+
+            }
+            else {
+                isEditing = false
+                editSaveProfileTextView.text = "Edit Profile"
+                nameEditText.isFocusable = false
+                phoneEditText.isFocusable = false
+
+                //Save Details in firebase
+            }
+        }
 
     }
 
